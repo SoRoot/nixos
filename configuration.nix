@@ -74,15 +74,17 @@
       signal-desktop
       slack
       appimage-run
+      virtualbox
     ];
   };
 
-  # Seems not to work as undefined variable 'lib'
+  # Set allowUnfree only for slack rather then setting it global
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
     "slack"
   ];
   # nixpkgs.config.allowUnfree = true;
 
+  # Should make screen sharing possiblie in slack
   xdg = {
     portal = {
       enable = true;
@@ -92,6 +94,11 @@
   #    gtkUsePortal = true;
     };
   }; 
+
+  # Virtualbox settings
+  virtualisation.virtualbox.host.enable = true;
+  users.extraGroups.vboxusers.members = [ "lukas" ];
+
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
