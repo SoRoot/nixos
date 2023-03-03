@@ -74,7 +74,6 @@
       signal-desktop
       slack
       appimage-run
-      virtualbox
     ];
   };
 
