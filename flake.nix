@@ -13,12 +13,12 @@
       formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
 
       # NixOS hosts. Apply with:
-      # nixos-rebuild switch --flake '.#nixos-kiste'                   # Inside this repository, or
-      # nixos-rebuild switch --flake '/path/to/this/repo#nixos-kiste'  # From anywhere else
+      # nixos-rebuild switch --flake '.#nixos-wdno'                   # Inside this repository, or
+      # nixos-rebuild switch --flake '/path/to/this/repo#nixos-wdno'  # From anywhere else
       nixosConfigurations = {
 
         # Currently only one host. Add others here when needed.
-        nixos-kiste = nixpkgs.lib.nixosSystem {
+        nixos-wdno = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [ ./configuration.nix ];
         };

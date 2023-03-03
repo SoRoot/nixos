@@ -14,7 +14,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "nixos-kiste"; # Define your hostname.
+  networking.hostName = "NixOs-Wdno"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
@@ -36,6 +36,8 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
+  # Enable flakes
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
@@ -77,12 +79,13 @@
     ];
   };
 
-  # Seems not to work as undefined variable 'lib'
+  # Set allowUnfree only for slack rather then setting it global
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
     "slack"
   ];
   # nixpkgs.config.allowUnfree = true;
 
+  # Should make screen sharing possiblie in slack
   xdg = {
     portal = {
       enable = true;
@@ -92,6 +95,11 @@
   #    gtkUsePortal = true;
     };
   }; 
+
+  # Virtualbox settings
+  virtualisation.virtualbox.host.enable = true;
+  users.extraGroups.vboxusers.members = [ "lukas" ];
+
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
