@@ -100,6 +100,7 @@
   # Set allowUnfree only for slack rather then setting it global
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
     "slack"
+    "spotify"
   ];
   # nixpkgs.config.allowUnfree = true;
 
