@@ -82,7 +82,7 @@
       hunspellDicts.de_DE
       hunspellDicts.en_US-large
       hunspellDicts.es_MX
-      dejavu-fonts
+      dejavu_fonts
       firefox
       gnome-pomodoro
       htop
