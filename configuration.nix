@@ -101,6 +101,7 @@
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
     "slack"
     "spotify"
+    "vivaldi"
   ];
   # nixpkgs.config.allowUnfree = true;
 
