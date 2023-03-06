@@ -6,7 +6,8 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
+      # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
 
@@ -17,7 +18,7 @@
   networking.hostName = "nixos-wdno"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+  networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
 
   # Set your time zone.
   time.timeZone = "America/Mexico_City";
@@ -42,7 +43,7 @@
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
-  
+
 
   # Configure keymap in X11
   services.xserver.layout = "us,es,de";
@@ -81,6 +82,18 @@
       hunspellDicts.de_DE
       hunspellDicts.en_US-large
       hunspellDicts.es_MX
+      dejavu-fonts
+      firefox
+      gnome-pomodoro
+      htop
+      neovim
+      onedrive
+      picocom
+      spotify
+      tree
+      vivaldi
+      wezterm
+      zettlr
     ];
   };
 
@@ -97,9 +110,9 @@
       extraPortals = with pkgs; [
         xdg-desktop-portal-wlr
       ];
-  #    gtkUsePortal = true;
+      #    gtkUsePortal = true;
     };
-  }; 
+  };
 
   # Virtualbox settings
   virtualisation.virtualbox.host.enable = true;
