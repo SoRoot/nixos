@@ -84,7 +84,7 @@
       hunspellDicts.es_MX
       dejavu_fonts
       firefox
-      gnome-pomodoro
+      gnome.pomodoro
       htop
       neovim
       onedrive
