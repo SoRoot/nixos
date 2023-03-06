@@ -76,6 +76,11 @@
       signal-desktop
       slack
       appimage-run
+      libreoffice-qt
+      hunspell
+      hunspellDicts.de_DE
+      hunspellDicts.en_US-large
+      hunspellDicts.es_MX
     ];
   };
 
