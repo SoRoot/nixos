@@ -94,6 +94,8 @@
       vivaldi
       wezterm
       zettlr
+      file
+      zellij  
     ];
   };
 
@@ -114,7 +116,7 @@
       extraPortals = with pkgs; [
         xdg-desktop-portal-wlr
       ];
-      #    gtkUsePortal = true;
+     # gtkUsePortal = true;
     };
   };
 
