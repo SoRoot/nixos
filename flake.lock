@@ -16,9 +16,42 @@
         "type": "github"
       }
     },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1678268259,
+        "narHash": "sha256-q+ZWNJfXKgIKwsZBir0yXrmIV/4tOv5BflxDAfGISps=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "90ef5c3c337d8d9f0c97e7641ece70a41f6c16a2",
+        "type": "github"
+      },
+      "original": {
+        "id": "nixpkgs",
+        "type": "indirect"
+      }
+    },
     "root": {
       "inputs": {
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "waveforms": "waveforms"
+      }
+    },
+    "waveforms": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_2"
+      },
+      "locked": {
+        "lastModified": 1678172967,
+        "narHash": "sha256-9HPc0G2p3D9Nf/9I9kfZb2brgkOYU2gET7IuS/HRQIU=",
+        "owner": "liff",
+        "repo": "waveforms-flake",
+        "rev": "e3dbbb79b00b3e9926cc73b99236679af695eabb",
+        "type": "github"
+      },
+      "original": {
+        "owner": "liff",
+        "repo": "waveforms-flake",
+        "type": "github"
       }
     }
   },

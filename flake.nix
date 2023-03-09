@@ -4,9 +4,10 @@
   inputs = {
     # Add other inputs as needed
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    waveforms.url = "github:liff/waveforms-flake";
   };
 
-  outputs = { self, nixpkgs, ... }:
+  outputs = { self, nixpkgs, waveforms, ... }:
     {
 
       # Use nixpkgs-fmt for 'nix fmt'
@@ -20,7 +21,12 @@
         # Currently only one host. Add others here when needed.
         nixos-wdno = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
-          modules = [ ./configuration.nix ];
+          modules = [
+            ./configuration.nix
+            waveforms.nixosModule
+            ({ users.users.lukas.extraGroups = [ "plugdev" ]; })
+          ];
+
         };
       };
     };

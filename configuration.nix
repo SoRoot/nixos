@@ -102,6 +102,8 @@
     "slack"
     "spotify"
     "vivaldi"
+    "waveforms"
+    "adept2-runtime"
   ];
   # nixpkgs.config.allowUnfree = true;
 
