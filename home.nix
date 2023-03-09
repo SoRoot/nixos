@@ -26,7 +26,12 @@
     onedrive
     picocom
     spotify
+    wl-clipboard
   ];
+
+  home.shellAliases = {
+    v = "nvim";
+  };
 
 
   programs = {
@@ -71,6 +76,31 @@
 
         terminal.autoTitle = true;
       };
+    };
+
+    #TMUX
+    tmux = {
+      enable = true;
+      aggressiveResize = true;
+      escapeTime = 20;
+      keyMode = "vi";
+      historyLimit = 50000;
+      baseIndex = 1;
+      mouse = true;
+      plugins = with pkgs; [
+        tmuxPlugins.cpu
+        {
+          plugin = tmuxPlugins.resurrect;
+          extraConfig = "set -g @resurrect-strategy-nvim 'session'";
+        }
+        {
+          plugin = tmuxPlugins.continuum;
+          extraConfig = "set -g @continuum-restore 'on'";
+        }
+        {
+          plugin = tmuxPlugins.yank;
+        }
+      ];
     };
 
     #FZF
