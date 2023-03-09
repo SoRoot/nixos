@@ -4,10 +4,16 @@
   inputs = {
     # Add other inputs as needed
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+
+    # Home-manager
+    home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
     waveforms.url = "github:liff/waveforms-flake";
+
   };
 
-  outputs = { self, nixpkgs, waveforms, ... }:
+  outputs = { self, nixpkgs, waveforms, home-manager, ... }:
     {
 
       # Use nixpkgs-fmt for 'nix fmt'
@@ -23,6 +29,7 @@
           system = "x86_64-linux";
           modules = [
             ./configuration.nix
+            home-manager.nixosModules.home-manager
             waveforms.nixosModule
             ({ users.users.lukas.extraGroups = [ "plugdev" ]; })
           ];

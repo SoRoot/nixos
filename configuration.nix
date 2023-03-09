@@ -59,51 +59,39 @@
   # Enable touchpad support (enabled default in most desktopManager).
   services.xserver.libinput.enable = true;
 
+  # Enable home-manager
+  home-manager.useUserPackages = true;
+  home-manager.users.lukas = import ./home.nix;
+
+  programs.zsh.enable = true;
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.lukas = {
     isNormalUser = true;
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    shell = pkgs.zsh;
   };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment = {
     sessionVariables.NIXOS_OZONE_WL = "1";
+
+    # System-wide installed packages. See ./home.nix for user-specific programs
     systemPackages = with pkgs; [
-      vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
       wget
-      tmux
       git
-      signal-desktop
-      slack
       appimage-run
-      libreoffice-qt
-      hunspell
-      hunspellDicts.de_DE
-      hunspellDicts.en_US-large
-      hunspellDicts.es_MX
       dejavu_fonts
-      firefox
-      gnome.pomodoro
       htop
       neovim
-      onedrive
-      picocom
-      spotify
       tree
-      vivaldi
-      wezterm
-      zettlr
       file
-      zellij  
     ];
   };
 
   # Set allowUnfree only for slack rather then setting it global
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-    "slack"
-    "spotify"
-    "vivaldi"
     "waveforms"
     "adept2-runtime"
   ];
@@ -116,7 +104,7 @@
       extraPortals = with pkgs; [
         xdg-desktop-portal-wlr
       ];
-     # gtkUsePortal = true;
+      # gtkUsePortal = true;
     };
   };
 
@@ -158,4 +146,3 @@
   system.stateVersion = "22.11"; # Did you read the comment?
 
 }
-
