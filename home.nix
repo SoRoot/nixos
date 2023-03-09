@@ -73,6 +73,12 @@
       };
     };
 
+    #FZF
+    fzf = {
+      enable = true;
+      enableZshIntegration = true;
+    };
+
     # Other
     zellij.enable = true;
     tealdeer.enable = true;
