@@ -9,7 +9,6 @@
   # Packages that should be installed to the user profile.
   home = {
     packages = with pkgs; [
-      htop
       zellij
       vivaldi
       wezterm
@@ -26,6 +25,7 @@
       onedrive
       picocom
       spotify
+      qpdfview
     ];
     shellAliases = {
       v = "nvim";
@@ -68,8 +68,8 @@
         #tokyonight-nvim
         #onedark-nvim
         #solarized-nvim
-        #nightfox-nvim
-        catppuccin-nvim
+        nightfox-nvim
+        #catppuccin-nvim
         vim-nix
         tagbar
         nerdcommenter
