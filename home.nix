@@ -7,30 +7,50 @@
   nixpkgs.config.allowUnfree = true;
 
   # Packages that should be installed to the user profile.
-  home.packages = with pkgs; [
-    htop
-    zellij
-    vivaldi
-    wezterm
-    zettlr
-    tmux
-    signal-desktop
-    slack
-    libreoffice-qt
-    hunspell
-    hunspellDicts.de_DE
-    hunspellDicts.en_US-large
-    hunspellDicts.es_MX
-    firefox
-    gnome.pomodoro
-    onedrive
-    picocom
-    spotify
-    wl-clipboard
-  ];
+  home = {
+    packages = with pkgs; [
+      htop
+      zellij
+      vivaldi
+      wezterm
+      zettlr
+      signal-desktop
+      slack
+      libreoffice-qt
+      hunspell
+      hunspellDicts.de_DE
+      hunspellDicts.en_US-large
+      hunspellDicts.es_MX
+      firefox
+      gnome.pomodoro
+      onedrive
+      picocom
+      spotify
+    ];
+    shellAliases = {
+      v = "nvim";
+    };
+  };
 
-  home.shellAliases = {
-    v = "nvim";
+  xdg = {
+    enable = true;
+    configFile = {
+
+      nvim_lua_settings = {
+        target = "nvim/lua/settings.lua";
+        source = ./nvim/settings.lua;
+      };
+
+      nvim_lua_mappings = {
+        target = "nvim/lua/mappings.lua";
+        source = ./nvim/mappings.lua;
+      };
+
+      wezterm_settings = {
+        target = "wezterm/wezterm.lua";
+        source = ./wezterm/wezterm.lua;
+      };
+    };
   };
 
 
@@ -45,12 +65,32 @@
       defaultEditor = true;
 
       plugins = with pkgs.vimPlugins; [
+        #tokyonight-nvim
+        #onedark-nvim
+        #solarized-nvim
+        #nightfox-nvim
+        catppuccin-nvim
         vim-nix
+        tagbar
+        nerdcommenter
+        fzf-vim
+        nvim-lspconfig
+        nvim-cmp
+        cmp-nvim-lsp
+        cmp_luasnip
+        luasnip
+        gitsigns-nvim
+        vim-fugitive
+        vim-autoformat
       ];
 
       vimAlias = true;
       viAlias = true;
       vimdiffAlias = true;
+      extraLuaConfig = ''
+        require('settings')
+        require('mappings')
+      '';
     };
 
     # Shell (ZSH)
@@ -86,7 +126,7 @@
       keyMode = "vi";
       historyLimit = 50000;
       baseIndex = 1;
-      mouse = true;
+      terminal = "xterm-256color";
       plugins = with pkgs; [
         tmuxPlugins.cpu
         {
@@ -96,9 +136,6 @@
         {
           plugin = tmuxPlugins.continuum;
           extraConfig = "set -g @continuum-restore 'on'";
-        }
-        {
-          plugin = tmuxPlugins.yank;
         }
       ];
     };
@@ -124,7 +161,5 @@
   # the Home Manager release notes for a list of state version
   # changes in each release.
   home.stateVersion = "22.11";
-
-
 
 }
