@@ -148,7 +148,6 @@
         setw -g automatic-rename
         set-option -g renumber-windows on
       '';
-      ];
     };
 
     #FZF
