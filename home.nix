@@ -25,7 +25,10 @@
       onedrive
       picocom
       spotify
-      qpdfview
+      zathura
+      qalculate-qt
+      ctags
+      llvmPackages_15.clang-unwrapped
     ];
     shellAliases = {
       v = "nvim";
@@ -44,6 +47,16 @@
       nvim_lua_mappings = {
         target = "nvim/lua/mappings.lua";
         source = ./nvim/mappings.lua;
+      };
+
+      nvim_lua_themes = {
+        target = "nvim/lua/themes.lua";
+        source = ./nvim/themes.lua;
+      };
+
+      nvim_lua_lspconfig = {
+        target = "nvim/lua/lsp-config.lua";
+        source = ./nvim/lsp-config.lua;
       };
 
       wezterm_settings = {
@@ -67,9 +80,11 @@
       plugins = with pkgs.vimPlugins; [
         #tokyonight-nvim
         #onedark-nvim
+        #onehalf
         #solarized-nvim
-        nightfox-nvim
-        #catppuccin-nvim
+        #nightfox-nvim
+        catppuccin-nvim
+        #sonokai
         vim-nix
         tagbar
         nerdcommenter
@@ -90,6 +105,8 @@
       extraLuaConfig = ''
         require('settings')
         require('mappings')
+        require('themes')
+        require('lsp-config')
       '';
     };
 
@@ -127,16 +144,10 @@
       historyLimit = 50000;
       baseIndex = 1;
       terminal = "xterm-256color";
-      plugins = with pkgs; [
-        tmuxPlugins.cpu
-        {
-          plugin = tmuxPlugins.resurrect;
-          extraConfig = "set -g @resurrect-strategy-nvim 'session'";
-        }
-        {
-          plugin = tmuxPlugins.continuum;
-          extraConfig = "set -g @continuum-restore 'on'";
-        }
+      extraConfig = ''
+        setw -g automatic-rename
+        set-option -g renumber-windows on
+      '';
       ];
     };
 

@@ -32,9 +32,4 @@ vim.g.netrw_altv=1 --open files on right
 vim.g.netrw_winsize = 20 --winsize of netrw
 
 
-require('gitsigns').setup{}
---vim.cmd[[colorscheme tokyonight]]
---vim.cmd[[colorscheme onedark]]
---vim.cmd[[colorscheme solarized]]
-vim.cmd[[colorscheme nightfox]]
---vim.cmd[[colorscheme catppuccin]]
+require('gitsigns').setup{} --gitsign plugin to show git changes in file

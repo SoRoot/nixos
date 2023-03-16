@@ -1,0 +1,7 @@
+--vim.cmd[[colorscheme tokyonight]]
+--vim.cmd[[colorscheme onedark]]
+--vim.cmd[[colorscheme onehalf]]
+--vim.cmd[[colorscheme solarized]]
+--vim.cmd[[colorscheme nightfox]]
+--vim.cmd[[colorscheme sonokai]]
+vim.cmd[[colorscheme catppuccin]]
