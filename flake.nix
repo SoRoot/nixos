@@ -11,13 +11,27 @@
 
     waveforms.url = "github:liff/waveforms-flake";
 
+    paymo-widget-appimage = {
+      url = "https://s3.amazonaws.com/widget.paymoapp.com/paymo-widget-7.2.8-x86_64.AppImage";
+      flake = false; 
+    };
+
   };
 
-  outputs = { self, nixpkgs, waveforms, home-manager, ... }:
+  outputs = { self, nixpkgs, waveforms, home-manager, paymo-widget-appimage, ... }:
     {
-
       # Use nixpkgs-fmt for 'nix fmt'
       formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
+
+      # A Nixpkgs overlay.
+      overlays.default = final: prev:
+        with prev.pkgs; {
+          paymo-widget = appimageTools.wrapType2 # or wrapType1
+            {
+              name = "paymo-widget";
+              src = paymo-widget-appimage;
+            };
+      };
 
       # NixOS hosts. Apply with:
       # nixos-rebuild switch --flake '.#nixos-wdno'                   # Inside this repository, or
@@ -31,9 +45,11 @@
             ./configuration.nix
             home-manager.nixosModules.home-manager
             waveforms.nixosModule
-            ({ users.users.lukas.extraGroups = [ "plugdev" ]; })
+            ({
+              users.users.lukas.extraGroups = [ "plugdev" ];
+              nixpkgs.overlays = [ self.overlays.default ];
+            })
           ];
-
         };
       };
     };

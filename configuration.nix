@@ -20,6 +20,23 @@
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
 
+  # Workaround from error discussed https://github.com/NixOS/nixpkgs/issues/180175
+  systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
+  systemd.services.systemd-networkd-wait-online.enable = lib.mkForce false;
+
+  # systemd paymo-widget service
+  systemd.user.services."paymo" = {
+    description = "Paymo widget";
+    wantedBy = [ "graphical-session.target" ];
+    partOf = [ "graphical-session.target" ];
+    serviceConfig = {
+      ExecStart = "${pkgs.paymo-widget}/bin/paymo-widget";
+    };
+  };
+
+  # systemd OneDrive service
+  services.onedrive.enable = true;
+
   # Set your time zone.
   time.timeZone = "America/Mexico_City";
 
@@ -34,8 +51,18 @@
     useXkbConfig = true; # use xkbOptions in tty.
   };
 
-  # Enable flakes
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix = {
+
+    # Enable flakes
+    settings.experimental-features = [ "nix-command" "flakes" ];
+
+    # Garbage Collector - Clean up old generations after 30 days
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 30d";
+    };
+  };
 
   # Enable the X11 windowing system.
   services.xserver = {
@@ -77,7 +104,11 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment = {
-    sessionVariables.NIXOS_OZONE_WL = "1";
+    sessionVariables = {
+      NIXOS_OZONE_WL = "1";
+      # Set Environment variable
+      VISUAL = "nvim";
+    };
 
     # System-wide installed packages. See ./home.nix for user-specific programs
     systemPackages = with pkgs; [
@@ -89,6 +120,12 @@
       neovim
       tree
       file
+      unzip
+      bmap-tools
+      paymo-widget
+      # xfce panel plugins
+      xfce.xfce4-xkb-plugin
+      xfce.xfce4-weather-plugin
     ];
   };
 
@@ -106,7 +143,7 @@
       extraPortals = with pkgs; [
         xdg-desktop-portal-wlr
       ];
-      # gtkUsePortal = true;
+      #gtkUsePortal = true;
     };
   };
 

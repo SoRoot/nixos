@@ -7,7 +7,10 @@ require'lspconfig'.html.setup {
 	filetypes = { "html", "php" },
 }
 
+require'lspconfig'.clangd.setup{}
 require'lspconfig'.phpactor.setup {}
+require'lspconfig'.bashls.setup{}
+require'lspconfig'.nil_ls.setup{}
 
 -- Add additional capabilities supported by nvim-cmp
 local capCmp = vim.lsp.protocol.make_client_capabilities()
@@ -15,7 +18,7 @@ capCmp = require('cmp_nvim_lsp').default_capabilities()
 
 local lspconfig = require('lspconfig')
 -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
-local servers = { 'phpactor', 'html', 'clangd', 'rust_analyzer', 'pyright', 'tsserver' }
+local servers = { 'phpactor', 'html', 'clangd', 'bashls', 'nil_ls' }
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
     -- on_attach = my_custom_on_attach,

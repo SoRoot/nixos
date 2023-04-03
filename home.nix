@@ -14,6 +14,9 @@
       wezterm
       zettlr
       signal-desktop
+      whatsapp-for-linux
+      threema-desktop
+      discord
       slack
       libreoffice-qt
       hunspell
@@ -22,16 +25,24 @@
       hunspellDicts.es_MX
       firefox
       gnome.pomodoro
-      onedrive
       picocom
       spotify
       zathura
+      microsoft-edge
       qalculate-qt
+      nxpmicro-mfgtools
+      # file manager
+      nnn
+      # LSPconfig
       ctags
       llvmPackages_15.clang-unwrapped
+      nodePackages_latest.vscode-langservers-extracted
+      nodePackages_latest.bash-language-server
+      nil
     ];
     shellAliases = {
       v = "nvim";
+      z = "zathura";
     };
   };
 
@@ -151,13 +162,21 @@
       enable = true;
       aggressiveResize = true;
       escapeTime = 20;
+      mouse = true;
       keyMode = "vi";
       historyLimit = 50000;
       baseIndex = 1;
-      terminal = "xterm-256color";
+      terminal = "tmux-256color";
       extraConfig = ''
-        setw -g automatic-rename
-        set-option -g renumber-windows on
+        set -s set-clipboard on
+        set -g status-interval 1
+        set -g automatic-rename on
+        set -g automatic-rename-format '#{b:pane_current_path}'
+        set -g renumber-windows on
+
+        bind '"' split-window -c "#{pane_current_path}"
+        bind % split-window -h -c "#{pane_current_path}"
+        bind c new-window -c "#{pane_current_path}"
       '';
     };
 
@@ -183,4 +202,9 @@
   # changes in each release.
   home.stateVersion = "22.11";
 
+  # Onedrive systemd service launcher for work/personal.
+  home.file.".config/onedrive-launcher".text = ''
+    onedrive-personal
+    onedrive-work
+    '';
 }
