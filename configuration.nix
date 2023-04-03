@@ -25,12 +25,27 @@
   systemd.services.systemd-networkd-wait-online.enable = lib.mkForce false;
 
   # systemd paymo-widget service
-  systemd.user.services."paymo" = {
+  systemd.user.services."paymo-widget" = {
     description = "Paymo widget";
     wantedBy = [ "graphical-session.target" ];
     partOf = [ "graphical-session.target" ];
     serviceConfig = {
+      Restart = "on-failure";
+      RestartSec = 5;
       ExecStart = "${pkgs.paymo-widget}/bin/paymo-widget";
+
+    };
+  };
+
+  # systemd Prospect-Mail service
+  systemd.user.services."prospect-mail" = {
+    description = "Prospect Mail";
+    wantedBy = [ "graphical-session.target" ];
+    partOf = [ "graphical-session.target" ];
+    serviceConfig = {
+      Restart = "on-failure";
+      RestartSec = 5;
+      ExecStart = "${pkgs.prospect-mail}/bin/prospect-mail";
     };
   };
 
@@ -123,6 +138,7 @@
       unzip
       bmap-tools
       paymo-widget
+      prospect-mail
       # xfce panel plugins
       xfce.xfce4-xkb-plugin
       xfce.xfce4-weather-plugin

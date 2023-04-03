@@ -206,5 +206,5 @@
   home.file.".config/onedrive-launcher".text = ''
     onedrive-personal
     onedrive-work
-    '';
+  '';
 }

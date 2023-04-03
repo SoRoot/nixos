@@ -63,11 +63,24 @@
         "url": "https://s3.amazonaws.com/widget.paymoapp.com/paymo-widget-7.2.8-x86_64.AppImage"
       }
     },
+    "prospect-mail-appimage": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-qPmahf8e9TXqlOwkhEAC9sTzTAIpTmLv1x9JHhVbzfo=",
+        "type": "file",
+        "url": "https://github.com/julian-alarcon/prospect-mail/releases/download/v0.4.0/Prospect-Mail-0.4.0.AppImage"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://github.com/julian-alarcon/prospect-mail/releases/download/v0.4.0/Prospect-Mail-0.4.0.AppImage"
+      }
+    },
     "root": {
       "inputs": {
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
         "paymo-widget-appimage": "paymo-widget-appimage",
+        "prospect-mail-appimage": "prospect-mail-appimage",
         "waveforms": "waveforms"
       }
     },
