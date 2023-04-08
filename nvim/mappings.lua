@@ -11,3 +11,8 @@ vim.api.nvim_set_keymap('n', '<S-Enter>', 'O<Esc>', {noremap=true, silent=true})
 vim.api.nvim_set_keymap('n', '<CR>', 'o<Esc>', {noremap=true, silent=true}) --enter => line below
 vim.api.nvim_set_keymap('x', 'p', '_dP ', {noremap=true, silent=true}) --overwrite with yanked text in visual mode
 
+-- Indent lines and reselect visual group
+vim.api.nvim_set_keymap('n', '<', '<gv', {noremap=true, silent=true})
+vim.api.nvim_set_keymap('n', '>', '>gv', {noremap=true, silent=true})
+vim.api.nvim_set_keymap('v', '<', '<gv', {noremap=true, silent=true})
+vim.api.nvim_set_keymap('v', '>', '>gv', {noremap=true, silent=true})
