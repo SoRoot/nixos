@@ -133,6 +133,19 @@
       '';
     };
 
+    ssh = {
+      enable = true;
+      matchBlocks = {
+        "regor" = {
+          hostname = "antares.code-ing.com";
+          user = "lungerland";
+          port = 40;
+          identityFile = "~/.ssh/regor.ed25519";
+        };
+      };
+    };
+
+
     # Shell (ZSH)
     zsh = {
       enable = true;
