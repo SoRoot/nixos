@@ -31,6 +31,7 @@
       microsoft-edge
       qalculate-qt
       nxpmicro-mfgtools
+      jdiskreport
       # file manager
       nnn
       # LSPconfig
@@ -168,6 +169,12 @@
       baseIndex = 1;
       terminal = "tmux-256color";
       extraConfig = ''
+        color_status_text="colour245"
+        color_window_off_status_bg="colour238"
+        color_light="white" #colour015
+        color_dark="colour232" # black= colour232
+        color_window_off_status_current_bg="colour254"
+
         set -s set-clipboard on
         set -g status-interval 1
         set -g automatic-rename on
@@ -177,6 +184,28 @@
         bind '"' split-window -c "#{pane_current_path}"
         bind % split-window -h -c "#{pane_current_path}"
         bind c new-window -c "#{pane_current_path}"
+
+        bind -T root F12  \
+          set prefix None \;\
+          set key-table off \;\
+          set status-style "fg=$color_status_text,bg=$color_window_off_status_bg" \;\
+          set window-status-current-style "fg=$color_dark,bold,bg=$color_window_off_status_current_bg" \;\
+          set window-status-current-format "#[fg=$color_window_off_status_bg,bg=$color_window_off_status_current_bg]$separator_powerline_right#[default] #I:#W# #[fg=$color_window_off_status_current_bg,bg=$color_window_off_status_bg]$separator_powerline_right#[default]" \;\
+          if -F '#{pane_in_mode}' 'send-keys -X cancel' \;\
+          refresh-client -S \;\
+
+        bind -T off F12 \
+          set -u prefix \;\
+          set -u key-table \;\
+          set -u status-style \;\
+          set -u window-status-current-style \;\
+          set -u window-status-current-format \;\
+          refresh-client -S
+          
+        wg_is_keys_off="#[fg=$color_light,bg=$color_window_off_indicator]#([ $(tmux show-option -qv key-table) = 'off' ] && echo 'OFF')#[default]"
+
+        set -g status-right "$wg_is_keys_off #{sysstat_cpu} | #{sysstat_mem} | #{sysstat_loadavg} | $wg_user_host"
+
       '';
     };
 

@@ -133,6 +133,9 @@
       dejavu_fonts
       htop
       neovim
+      xclip
+      #wl-copy
+      #wl-paste
       tree
       file
       unzip
