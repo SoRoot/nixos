@@ -183,6 +183,9 @@
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
+  programs.ssh.startAgent = true;
+  services.gnome.gnome-keyring.enable = true;
+  security.pam.services.lightdm.enableGnomeKeyring = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

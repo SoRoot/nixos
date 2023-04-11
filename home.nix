@@ -89,11 +89,19 @@
     };
   };
 
+  services.gpg-agent = {
+    enable = true;
+    enableSshSupport = true;
+    enableZshIntegration = true;
+    sshKeys = [ "MD5:b2:9a:47:83:4a:6f:bd:f9:7f:83:d6:23:ba:bc:8c:ad" "MD5:3e:37:b7:d7:f1:97:bd:a5:3d:e1:b4:88:cf:ef:23:7a" ];
+  };
 
   programs = {
 
     # Let Home Manager install and manage itself.
     home-manager.enable = true;
+
+    gpg.enable = true;
 
     # Neovim
     neovim = {
@@ -165,11 +173,23 @@
         editor.dotExpansion = true;
 
         # Prezto modules to load
-        pmodules = [ "utility" "editor" "directory" "prompt" ];
+        pmodules = [ "utility" "editor" "directory" "prompt" "terminal" ];
 
         terminal.autoTitle = true;
+        terminal.tabTitleFormat = "%m: %s";
+        terminal.windowTitleFormat = "%n@%m: %s";
       };
     };
+
+    #FZF
+    fzf = {
+      enable = true;
+      enableZshIntegration = true;
+    };
+
+    # Other
+    zellij.enable = true;
+    tealdeer.enable = true;
 
     #TMUX
     tmux = {
@@ -193,6 +213,8 @@
         set -g automatic-rename on
         set -g automatic-rename-format '#{b:pane_current_path}'
         set -g renumber-windows on
+
+        set-option -g destroy-unattached off
 
         bind '"' split-window -c "#{pane_current_path}"
         bind % split-window -h -c "#{pane_current_path}"
@@ -221,16 +243,6 @@
 
       '';
     };
-
-    #FZF
-    fzf = {
-      enable = true;
-      enableZshIntegration = true;
-    };
-
-    # Other
-    zellij.enable = true;
-    tealdeer.enable = true;
   };
 
 
