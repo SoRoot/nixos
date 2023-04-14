@@ -28,6 +28,7 @@
       picocom
       spotify
       zathura
+      mupdf
       microsoft-edge
       qalculate-qt
       nxpmicro-mfgtools
@@ -173,7 +174,7 @@
         editor.dotExpansion = true;
 
         # Prezto modules to load
-        pmodules = [ "utility" "editor" "directory" "prompt" "terminal" ];
+        pmodules = [ "utility" "editor" "directory" "prompt" "terminal" "tmux" ];
 
         terminal.autoTitle = true;
         terminal.tabTitleFormat = "%m: %s";
@@ -208,7 +209,8 @@
         color_dark="colour232" # black= colour232
         color_window_off_status_current_bg="colour254"
 
-        set -s set-clipboard on
+        set -s set-clipboard off
+        #set -s copy-command 'xclip -i'
         set -g status-interval 1
         set -g automatic-rename on
         set -g automatic-rename-format '#{b:pane_current_path}'

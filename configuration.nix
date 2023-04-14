@@ -129,10 +129,12 @@
     systemPackages = with pkgs; [
       wget
       git
+      gnumake
       appimage-run
       dejavu_fonts
       htop
       neovim
+      xpdf
       xclip
       #wl-copy
       #wl-paste
@@ -152,6 +154,9 @@
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
     "waveforms"
     "adept2-runtime"
+  ];
+  nixpkgs.config.permittedInsecurePackages = [
+    "xpdf-4.04"
   ];
   # nixpkgs.config.allowUnfree = true;
 
