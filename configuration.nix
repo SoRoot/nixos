@@ -135,7 +135,8 @@
       htop
       neovim
       xpdf
-      xclip
+      #xclip
+      xsel
       #wl-copy
       #wl-paste
       tree

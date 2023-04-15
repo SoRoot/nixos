@@ -6,8 +6,34 @@
   # Allow "unfree" licenced packages in home-manager
   nixpkgs.config.allowUnfree = true;
 
-  # Packages that should be installed to the user profile.
   home = {
+    # This value determines the Home Manager release that your
+    # configuration is compatible with. This helps avoid breakage
+    # when a new Home Manager release introduces backwards
+    # incompatible changes.
+    #
+    # You can update Home Manager without changing this value. See
+    # the Home Manager release notes for a list of state version
+    # changes in each release.
+    stateVersion = "22.11";
+
+    # Set configuration dotfiles
+    file = {
+        # Onedrive systemd service launcher for work/personal.
+        ".config/onedrive-launcher".text = ''
+          onedrive-personal
+          onedrive-work
+        '';
+        # Xresources set to work with tmux clipboard
+        ".Xresources".text = ''
+          XTerm*disallowedWindowOps: 20,21,SetXprop
+        '';
+        # zathura config gile
+        ".config/zathura/zathurarc".text = ''
+          set selection-clipboard clipboard
+        '';
+      };
+    # Packages that should be installed to the user profile.
     packages = with pkgs; [
       zellij
       vivaldi
@@ -48,6 +74,7 @@
     };
   };
 
+  # Set configuration dotfiles for vim, wezterm and onedrive
   xdg = {
     enable = true;
     configFile = {
@@ -90,11 +117,11 @@
     };
   };
 
+  # GPG agent for future use with Yubikey
   services.gpg-agent = {
     enable = true;
     enableSshSupport = true;
     enableZshIntegration = true;
-    sshKeys = [ "MD5:b2:9a:47:83:4a:6f:bd:f9:7f:83:d6:23:ba:bc:8c:ad" "MD5:3e:37:b7:d7:f1:97:bd:a5:3d:e1:b4:88:cf:ef:23:7a" ];
   };
 
   programs = {
@@ -142,6 +169,7 @@
       '';
     };
 
+    # SSH config file for Regor Server Wdno
     ssh = {
       enable = true;
       matchBlocks = {
@@ -176,6 +204,7 @@
         # Prezto modules to load
         pmodules = [ "utility" "editor" "directory" "prompt" "terminal" "tmux" ];
 
+        # Terminal format config
         terminal.autoTitle = true;
         terminal.tabTitleFormat = "%m: %s";
         terminal.windowTitleFormat = "%n@%m: %s";
@@ -197,27 +226,36 @@
       enable = true;
       aggressiveResize = true;
       escapeTime = 20;
-      mouse = true;
+      #mouse = true;
       keyMode = "vi";
       historyLimit = 50000;
       baseIndex = 1;
       terminal = "tmux-256color";
       extraConfig = ''
+        # Colors for nested tmux
         color_status_text="colour245"
         color_window_off_status_bg="colour238"
         color_light="white" #colour015
         color_dark="colour232" # black= colour232
         color_window_off_status_current_bg="colour254"
 
-        set -s set-clipboard off
-        #set -s copy-command 'xclip -i'
+        # Use system clipboard
+        set -s set-clipboard on
+        # External clipboard tools
+        #set -s copy-command 'xsel -i'
+
         set -g status-interval 1
         set -g automatic-rename on
         set -g automatic-rename-format '#{b:pane_current_path}'
         set -g renumber-windows on
 
-        set-option -g destroy-unattached off
+        # Suggested by prezto tmux module
+        #set-option -g destroy-unattached off
 
+        # Wezterm User Vars
+        set -g allow-passthrough on
+
+        # Config for neseted tmux
         bind '"' split-window -c "#{pane_current_path}"
         bind % split-window -h -c "#{pane_current_path}"
         bind c new-window -c "#{pane_current_path}"
@@ -241,26 +279,8 @@
           
         wg_is_keys_off="#[fg=$color_light,bg=$color_window_off_indicator]#([ $(tmux show-option -qv key-table) = 'off' ] && echo 'OFF')#[default]"
 
-        set -g status-right "$wg_is_keys_off #{sysstat_cpu} | #{sysstat_mem} | #{sysstat_loadavg} | $wg_user_host"
-
+        set -g status-right "$wg_is_keys_off"
       '';
     };
   };
-
-
-  # This value determines the Home Manager release that your
-  # configuration is compatible with. This helps avoid breakage
-  # when a new Home Manager release introduces backwards
-  # incompatible changes.
-  #
-  # You can update Home Manager without changing this value. See
-  # the Home Manager release notes for a list of state version
-  # changes in each release.
-  home.stateVersion = "22.11";
-
-  # Onedrive systemd service launcher for work/personal.
-  home.file.".config/onedrive-launcher".text = ''
-    onedrive-personal
-    onedrive-work
-  '';
 }
