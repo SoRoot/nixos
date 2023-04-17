@@ -19,17 +19,17 @@
 
     # Set configuration dotfiles
     file = {
-        # Onedrive systemd service launcher for work/personal.
         ".config/onedrive-launcher".text = ''
+          # Onedrive systemd service launcher for work/personal.
           onedrive-personal
           onedrive-work
         '';
-        # Xresources set to work with tmux clipboard
         ".Xresources".text = ''
+          # Xresources set to work with tmux clipboard
           XTerm*disallowedWindowOps: 20,21,SetXprop
         '';
-        # zathura config gile
         ".config/zathura/zathurarc".text = ''
+          # zathura config gile
           set selection-clipboard clipboard
         '';
       };
@@ -129,6 +129,7 @@
     # Let Home Manager install and manage itself.
     home-manager.enable = true;
 
+    # GPG
     gpg.enable = true;
 
     # Neovim
@@ -209,6 +210,11 @@
         terminal.tabTitleFormat = "%m: %s";
         terminal.windowTitleFormat = "%n@%m: %s";
       };
+      # Additions for .zshrc
+      initExtra =  ''
+        # Autostart of tmux on terminal launch
+        if [ "$TMUX" = "" ]; then tmux; fi
+      '';
     };
 
     #FZF
