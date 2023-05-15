@@ -11,9 +11,13 @@
       ./hardware-configuration.nix
     ];
 
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  # Use the GRUB EFI boot loader.
+  boot.loader.grub.enable = true;
+  boot.loader.grub.device = "nodev";
+
+  boot.loader.grub.efiSupport = true;
+  boot.loader.grub.useOSProber = true;
+  boot.loader.efi.canTouchEfiVariables = true; #boot.loader.systemd-boot.enable = true;
 
   networking.hostName = "nixos-wdno"; # Define your hostname.
   # Pick only one of the below networking options.
