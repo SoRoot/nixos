@@ -59,8 +59,20 @@
       qalculate-qt
       nxpmicro-mfgtools
       jdiskreport
-      # file manager
-      nnn
+      xfce.thunar-archive-plugin
+      xfce.thunar-volman
+      xfce.tumbler # thunar thumbnails
+      xfce.xfce4-volumed-pulse
+      xfce.xfconf # thunar save settings
+      (xfce.thunar.override {
+        thunarPlugins = with pkgs; [
+          xfce.thunar-volman
+          xfce.thunar-archive-plugin
+          xfce.thunar-media-tags-plugin
+        ];
+      })
+      # device tree compiler
+      dtc
       # LSPconfig
       ctags
       llvmPackages_15.clang-unwrapped
@@ -70,7 +82,8 @@
     ];
     shellAliases = {
       v = "nvim";
-      z = "zathura";
+      za = "zathura";
+      gs = "git status";
     };
   };
 
@@ -131,6 +144,9 @@
 
     # GPG
     gpg.enable = true;
+
+    # Pazi - directory autojump tool
+    pazi.enable = true;
 
     # Neovim
     neovim = {

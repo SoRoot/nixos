@@ -10,6 +10,7 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     waveforms.url = "github:liff/waveforms-flake";
+    waveforms.inputs.nixpkgs.follows = "nixpkgs";
 
     paymo-widget-appimage = {
       url = "https://s3.amazonaws.com/widget.paymoapp.com/paymo-widget-7.2.8-x86_64.AppImage";

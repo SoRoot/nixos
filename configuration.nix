@@ -18,7 +18,11 @@
   networking.hostName = "nixos-wdno"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
+  networking.networkmanager = { # Easiest to use and most distros use this by default.
+    enable = true;
+    #wifi.powersave = false; # Powersave true can make ssh connections slow
+  };
+  
 
   # Workaround from error discussed https://github.com/NixOS/nixpkgs/issues/180175
   systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
@@ -100,6 +104,9 @@
   sound.enable = true;
   hardware.pulseaudio.enable = true;
 
+  # Enable Bluetooth
+  hardware.bluetooth.enable = true;
+
   # Enable touchpad support (enabled default in most desktopManager).
   services.xserver.libinput.enable = true;
 
@@ -173,7 +180,13 @@
   };
 
   # Virtualbox settings
-  virtualisation.virtualbox.host.enable = true;
+  virtualisation.virtualbox = {
+    host.enable = true;
+    guest = {
+      enable = true;
+      x11 = true;
+    };
+  };
   users.extraGroups.vboxusers.members = [ "lukas" ];
 
 
