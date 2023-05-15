@@ -180,13 +180,7 @@
   };
 
   # Virtualbox settings
-  virtualisation.virtualbox = {
-    host.enable = true;
-    guest = {
-      enable = true;
-      x11 = true;
-    };
-  };
+  virtualisation.virtualbox.host.enable = true;
   users.extraGroups.vboxusers.members = [ "lukas" ];
 
 
