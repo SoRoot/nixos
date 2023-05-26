@@ -148,11 +148,14 @@
       wget
       git
       gnumake
+      cmake
+      gcc-arm-embedded
       appimage-run
       dejavu_fonts
       htop
       neovim
       ntfs3g
+      segger-jlink
       xpdf
       #xclip
       xsel
@@ -170,15 +173,15 @@
     ];
   };
 
-  # Set allowUnfree only for slack rather then setting it global
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-    "waveforms"
-    "adept2-runtime"
-  ];
-  nixpkgs.config.permittedInsecurePackages = [
-    "xpdf-4.04"
-  ];
-  # nixpkgs.config.allowUnfree = true;
+  nixpkgs.config = {
+    # Set allowUnfree globally
+    allowUnfree = true;
+    # accept Linceses for segger-jlink
+    segger-jlink.acceptLicense = true;
+    permittedInsecurePackages = [
+      "xpdf-4.04"
+    ];
+  };
 
   # Should make screen sharing possiblie in slack
   xdg = {
