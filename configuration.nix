@@ -164,6 +164,7 @@
       tree
       file
       unzip
+      unrar
       bmap-tools
       paymo-widget
       prospect-mail
