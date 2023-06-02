@@ -11,6 +11,10 @@ vim.api.nvim_set_keymap('n', '<S-Enter>', 'O<Esc>', {noremap=true, silent=true})
 vim.api.nvim_set_keymap('n', '<CR>', 'o<Esc>', {noremap=true, silent=true}) --enter => line below
 vim.api.nvim_set_keymap('x', 'p', '_dP ', {noremap=true, silent=true}) --overwrite with yanked text in visual mode
 
+--spell mappings: change the last wrong wirtten word with ,+f undo with esc+u.
+vim.api.nvim_set_keymap('i', '<leader>f', '<c-g>u<Esc>[s1z=`]a<c-g>u', {noremap=true, silent=true}) --for insert mode
+vim.api.nvim_set_keymap('n', '<leader>f', '[s1z=<c-o>', {noremap=true, silent=true}) --and normal mode
+
 -- Indent lines and reselect visual group
 vim.api.nvim_set_keymap('n', '<', '<gv', {noremap=true, silent=true})
 vim.api.nvim_set_keymap('n', '>', '>gv', {noremap=true, silent=true})

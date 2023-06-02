@@ -26,6 +26,9 @@ vim.o.mouse="a" --enable use of the mouse for all modes - helpful for resizing b
 --change cursor shape depending on mode
 vim.o.guicursor="n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175"
 
+vim.opt.spell=true --mandatory seetings for cmp-spell
+vim.opt.spelllang={'en_us'} --set lang for cmp-spell
+
 vim.g.mapleader=","
 vim.g.netrw_liststyle=3 --shows 3rd liststyle in explorer mode
 vim.g.netrw_altv=1 --open files on right

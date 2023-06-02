@@ -163,6 +163,7 @@
         catppuccin-nvim
         #sonokai
         vim-nix
+        cmp-spell
         tagbar
         nerdcommenter
         fzf-vim

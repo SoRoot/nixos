@@ -145,6 +145,7 @@
 
     # System-wide installed packages. See ./home.nix for user-specific programs
     systemPackages = with pkgs; [
+      python311
       wget
       git
       gnumake

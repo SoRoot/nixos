@@ -12,6 +12,21 @@ require'lspconfig'.phpactor.setup {}
 require'lspconfig'.bashls.setup{}
 require'lspconfig'.nil_ls.setup{}
 
+-- Setup for cmp-spell spell and grammar checker
+require('cmp').setup({
+    sources = {
+        {
+            name = 'spell',
+            option = {	
+                keep_all_entries = false,
+                enable_in_context = function()
+                    return true
+                end,
+            },
+        },
+    },
+})
+
 -- Add additional capabilities supported by nvim-cmp
 local capCmp = vim.lsp.protocol.make_client_capabilities()
 capCmp = require('cmp_nvim_lsp').default_capabilities()
