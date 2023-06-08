@@ -86,6 +86,9 @@
     # Enable flakes
     settings.experimental-features = [ "nix-command" "flakes" ];
 
+    # Enables storage optimization via hardlinking store files
+    settings.auto-optimise-store = true;
+
     # Garbage Collector - Clean up old generations after 30 days
     gc = {
       automatic = true;
