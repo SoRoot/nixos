@@ -223,10 +223,11 @@
         # Prezto modules to load
         pmodules = [ "utility" "editor" "directory" "prompt" "terminal" "tmux" ];
 
-        # Terminal format config
-        terminal.autoTitle = true;
-        terminal.tabTitleFormat = "%m: %s";
-        terminal.windowTitleFormat = "%n@%m: %s";
+        # Terminal format config. Not using these configs as I use the tmux set-title option
+        #terminal.autoTitle = true;
+        #terminal.multiplexerTitleFormat = "%s";
+        #terminal.tabTitleFormat = "%m: %s";
+        #terminal.windowTitleFormat = "%n@%m: %s";
       };
       # Additions for .zshrc
       initExtra =  ''
@@ -267,6 +268,10 @@
         set -s set-clipboard on
         # External clipboard tools
         #set -s copy-command 'xsel -i'
+
+        # Set the window title of wezterm
+        set-option -g set-titles on
+        set-option -g set-titles-string '#W'
 
         set -g status-interval 1
         set -g automatic-rename on
