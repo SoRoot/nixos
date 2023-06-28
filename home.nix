@@ -35,6 +35,8 @@
       };
     # Packages that should be installed to the user profile.
     packages = with pkgs; [
+      networkmanagerapplet
+      gparted
       audacity
       gimp
       zellij
@@ -207,7 +209,7 @@
       enable = true;
       historySubstringSearch.enable = true;
       enableAutosuggestions = true;
-      enableSyntaxHighlighting = true;
+      syntaxHighlighting.enable = true;
       autocd = true;
 
       prezto = {
