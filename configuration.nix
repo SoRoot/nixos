@@ -156,6 +156,8 @@
       git
       gnumake
       cmake
+      binutils
+      zeromq
       gcc-arm-embedded
       appimage-run
       dejavu_fonts

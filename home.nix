@@ -43,6 +43,7 @@
       vivaldi
       wezterm
       zettlr
+      pandoc
       signal-desktop
       whatsapp-for-linux
       threema-desktop

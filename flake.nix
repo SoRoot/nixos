@@ -9,7 +9,7 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    waveforms.url = "github:liff/waveforms-flake";
+    waveforms.url = "github:soroot/waveforms-flake";
     waveforms.inputs.nixpkgs.follows = "nixpkgs";
 
     paymo-widget-appimage = {
