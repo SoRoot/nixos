@@ -11,20 +11,21 @@
       ./hardware-configuration.nix
     ];
 
-  # Use the GRUB EFI boot loader.
-  boot.loader.grub.enable = true;
-  # Define on which hard drive you want to install Grub.
-  boot.loader.grub.device = "nodev";
-  boot.loader.grub.efiSupport = true;
-  boot.loader.grub.useOSProber = true;
-  boot.loader.grub.efiInstallAsRemovable = true;
-  boot.loader.grub.extraEntries = ''
-    menuentry "Windows 11" {
-      chainloader (hd0,2)+1
-    }
-  '';
-  boot.loader.efi.efiSysMountPoint = "/boot/efi";
-  #boot.loader.efi.canTouchEfiVariables = true; #boot.loader.systemd-boot.enable = true;
+ # # Use the GRUB EFI boot loader.
+ # boot.loader.grub.enable = true;
+ # # Define on which hard drive you want to install Grub.
+ # boot.loader.grub.device = "nodev";
+ # boot.loader.grub.efiSupport = true;
+ # boot.loader.grub.useOSProber = true;
+ # boot.loader.grub.efiInstallAsRemovable = true;
+ # boot.loader.grub.extraEntries = ''
+ #   menuentry "Windows 11" {
+ #     chainloader (hd0,2)+1
+ #   }
+ # '';
+  #boot.loader.efi.efiSysMountPoint = "/boot/efi";
+  #boot.loader.efi.canTouchEfiVariables = true; #
+  boot.loader.systemd-boot.enable = true;
 
   networking.hostName = "nixos-wdno"; # Define your hostname.
   # Pick only one of the below networking options.
