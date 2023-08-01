@@ -87,7 +87,6 @@
     shellAliases = {
       v = "nvim";
       za = "zathura";
-      gs = "git status";
     };
   };
 
@@ -204,6 +203,35 @@
       };
     };
 
+    # Git config
+    git = {
+      enable = true;
+      userName = "SoRoot";
+      userEmail = "lukas.ungerland@gmail.com";
+      diff-so-fancy = {
+        enable = true;
+        rulerWidth = 90;
+      };
+      aliases = {
+        co = "checkout";
+        s = "status";
+      };
+      extraConfig = {
+        pull.rebase = false;
+        safe.directory = "*";
+        diff.tool = "meld";
+        difftool.prompt = false;
+        difftool."meld".cmd = "meld \"$LOCAL\" \"$REMOTE\"";
+        merge.tool = "meld";
+        mergetool."meld".cmd = "meld \"$LOCAL\" \"$MERGED\" \"$REMOTE\" --output \"MERGED\"";
+        #mergetool."meld".cmd = "meld \"$LOCAL\" \"$BASE\" \"$REMOTE\" --output \"MERGED\"";
+        # - $LOCAL is the file in the current branch (e.g. master).
+        # - $REMOTE is the file in the branch being merged (e.g. branch_name).
+        # - $MERGED is the partially merged file with the merge conflict information in it.
+        # - $BASE is the shared commit ancestor of $LOCAL and $REMOTE, this is to say the file as it was
+        #   when the branch containing $REMOTE was originally created.
+      };
+    };
 
     # Shell (ZSH)
     zsh = {

@@ -154,7 +154,8 @@
     systemPackages = with pkgs; [
       python311
       wget
-      git
+      ripgrep
+      ripgrep-all
       gnumake
       cmake
       binutils
@@ -164,6 +165,7 @@
       dejavu_fonts
       htop
       neovim
+      meld
       ntfs3g
       segger-jlink
       xpdf
@@ -174,6 +176,7 @@
       tree
       file
       unzip
+      zip
       unrar
       bmap-tools
       paymo-widget
