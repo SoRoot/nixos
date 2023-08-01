@@ -75,6 +75,8 @@
           xfce.thunar-media-tags-plugin
         ];
       })
+      # to work with thunar-archive-plugin
+      gnome.file-roller
       # device tree compiler
       dtc
       # LSPconfig
