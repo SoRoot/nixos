@@ -37,13 +37,12 @@
     packages = with pkgs; [
       networkmanagerapplet
       gparted
-      audacity
-      gimp
-      zellij
+      #audacity
+      #gimp
+      #zellij
       vivaldi
       wezterm
-      zettlr
-      pandoc
+      #pandoc
       signal-desktop
       whatsapp-for-linux
       threema-desktop
@@ -59,7 +58,6 @@
       picocom
       spotify
       zathura
-      mupdf
       qalculate-qt
       nxpmicro-mfgtools
       jdiskreport
@@ -212,7 +210,7 @@
       userEmail = "lukas.ungerland@gmail.com";
       diff-so-fancy = {
         enable = true;
-        rulerWidth = 90;
+        rulerWidth = 60;
       };
       aliases = {
         co = "checkout";
