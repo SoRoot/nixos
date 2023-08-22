@@ -42,7 +42,6 @@
       #zellij
       vivaldi
       wezterm
-      #pandoc
       signal-desktop
       whatsapp-for-linux
       threema-desktop

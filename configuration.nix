@@ -121,6 +121,7 @@
 
   # Enable Bluetooth
   hardware.bluetooth.enable = true;
+  services.blueman.enable = true;
 
   # Enable touchpad support (enabled default in most desktopManager).
   services.xserver.libinput.enable = true;
@@ -155,7 +156,12 @@
       python311
       wget
       ripgrep
-      ripgrep-all
+      #ripgrep-all
+      # dependencies for ripgrep-all
+      #pandoc
+      #poppler_utils
+      #ffmpeg
+      #
       gnumake
       cmake
       binutils
