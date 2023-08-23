@@ -7,11 +7,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1692720545,
-        "narHash": "sha256-DQDremUH7lRxiZEIVh6C6kQusuPe1vUKtiVl29nmP0E=",
+        "lastModified": 1692763155,
+        "narHash": "sha256-qMrGKZ8c/q/mHO3ZdrcBPwiVVXPLLgXjY98Ejqb5kAA=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "8eb8c212e50e2fd95af5849585a2eb819add0a1e",
+        "rev": "6a20e40acaebf067da682661aa67da8b36812606",
         "type": "github"
       },
       "original": {
@@ -36,16 +36,16 @@
         "type": "github"
       }
     },
-    "paymo-widget-appimage": {
+    "paymo-track-appimage": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-9aFvNzeqX7iniannP3T3v208YyEFy18wekhTWLJDiPU=",
+        "narHash": "sha256-jtBsDRqc8HdhfNPbQgfHKPPKj3lRawoNEtlfu1dpSGI=",
         "type": "file",
-        "url": "https://s3.amazonaws.com/widget.paymoapp.com/paymo-widget-7.2.8-x86_64.AppImage"
+        "url": "https://track-paymoapp-com.s3-accelerate.amazonaws.com/paymo-track-linux-x86_64-8.9.6.AppImage"
       },
       "original": {
         "type": "file",
-        "url": "https://s3.amazonaws.com/widget.paymoapp.com/paymo-widget-7.2.8-x86_64.AppImage"
+        "url": "https://track-paymoapp-com.s3-accelerate.amazonaws.com/paymo-track-linux-x86_64-8.9.6.AppImage"
       }
     },
     "prospect-mail-appimage": {
@@ -64,7 +64,7 @@
       "inputs": {
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
-        "paymo-widget-appimage": "paymo-widget-appimage",
+        "paymo-track-appimage": "paymo-track-appimage",
         "prospect-mail-appimage": "prospect-mail-appimage",
         "waveforms": "waveforms"
       }

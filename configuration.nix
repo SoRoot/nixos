@@ -40,15 +40,15 @@
   systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
   systemd.services.systemd-networkd-wait-online.enable = lib.mkForce false;
 
-  # systemd paymo-widget service
-  systemd.user.services."paymo-widget" = {
-    description = "Paymo widget";
+  # systemd paymo-track service
+  systemd.user.services."paymo-track" = {
+    description = "Paymo track";
     wantedBy = [ "graphical-session.target" ];
     partOf = [ "graphical-session.target" ];
     serviceConfig = {
       Restart = "on-failure";
       RestartSec = 5;
-      ExecStart = "${pkgs.paymo-widget}/bin/paymo-widget";
+      ExecStart = "${pkgs.paymo-track}/bin/paymo-track";
 
     };
   };
@@ -162,6 +162,7 @@
       #poppler_utils
       #ffmpeg
       #
+      libftdi1
       gnumake
       cmake
       binutils
@@ -185,7 +186,7 @@
       zip
       unrar
       bmap-tools
-      paymo-widget
+      paymo-track
       prospect-mail
       # xfce panel plugins
       xfce.xfce4-xkb-plugin

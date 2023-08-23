@@ -12,8 +12,8 @@
     waveforms.url = "github:soroot/waveforms-flake";
     waveforms.inputs.nixpkgs.follows = "nixpkgs";
 
-    paymo-widget-appimage = {
-      url = "https://s3.amazonaws.com/widget.paymoapp.com/paymo-widget-7.2.8-x86_64.AppImage";
+    paymo-track-appimage = {
+      url = "https://track-paymoapp-com.s3-accelerate.amazonaws.com/paymo-track-linux-x86_64-8.9.6.AppImage";
       flake = false;
     };
 
@@ -24,7 +24,7 @@
 
   };
 
-  outputs = { self, nixpkgs, waveforms, home-manager, prospect-mail-appimage, paymo-widget-appimage, ... }:
+  outputs = { self, nixpkgs, waveforms, home-manager, prospect-mail-appimage, paymo-track-appimage, ... }:
     {
       # Use nixpkgs-fmt for 'nix fmt'
       formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
@@ -32,10 +32,10 @@
       # A Nixpkgs overlay.
       overlays.default = final: prev:
         with prev.pkgs; {
-          paymo-widget = appimageTools.wrapType2 # or wrapType1
+          paymo-track = appimageTools.wrapType2 # or wrapType1
             {
-              name = "paymo-widget";
-              src = paymo-widget-appimage;
+              name = "paymo-track";
+              src = paymo-track-appimage;
             };
           prospect-mail = appimageTools.wrapType2
             {
