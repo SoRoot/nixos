@@ -112,6 +112,9 @@
   services.xserver.layout = "us,es,de";
   services.xserver.xkbOptions = "caps:escape"; # map caps to escape.
 
+  #services.xserver.displayManager.gdm.enable = true;
+  #services.xserver.desktopManager.gnome.enable = true;
+
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
@@ -156,15 +159,19 @@
       python311
       wget
       ripgrep
-      #ripgrep-all
+      ripgrep-all
       # dependencies for ripgrep-all
       #pandoc
       #poppler_utils
       #ffmpeg
       #
       libftdi1
+      usbutils
       gnumake
+      libgccjit
+      gccgo
       cmake
+      gdb
       binutils
       zeromq
       gcc-arm-embedded
