@@ -159,12 +159,10 @@
       python311
       wget
       ripgrep
-      ripgrep-all
-      # dependencies for ripgrep-all
+      #ripgrep-all
       #pandoc
       #poppler_utils
       #ffmpeg
-      #
       libftdi1
       usbutils
       gnumake
@@ -179,9 +177,10 @@
       dejavu_fonts
       htop
       neovim
+      neofetch
       meld
       ntfs3g
-      segger-jlink
+      #segger-jlink
       xpdf
       #xclip
       xsel
@@ -192,6 +191,7 @@
       unzip
       zip
       unrar
+      p7zip
       bmap-tools
       paymo-track
       prospect-mail
@@ -243,11 +243,18 @@
   services.gnome.gnome-keyring.enable = true;
   security.pam.services.lightdm.enableGnomeKeyring = true;
 
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+  networking.firewall = {
+    enable = true;
+    allowPing = true;
+    # Open ports in the firewall.
+    allowedTCPPorts = [ 
+      22    # SSH
+      80    # HTTP
+      443   # HTTPS
+    ];
+    
+    # allowedUDPPorts = [ ... ];
+  };
 
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
