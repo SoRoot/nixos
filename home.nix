@@ -129,8 +129,23 @@
         source = ./onedrive-personal/config;
       };
 
+      #sway_settings = {
+        #target = "sway/config";
+        #source = ./sway/config;
+      #};
     };
   };
+
+  # Enable Sway
+  wayland.windowManager.sway = {
+    enable = true;
+    config = rec {
+      modifier = "Mod4";
+      # Use wezterm as default terminal
+      terminal = "wezterm"; 
+      font = [ "Hack" "DejaVu Sans Mono" ];
+    };
+  }; 
 
   # GPG agent for future use with Yubikey
   services.gpg-agent = {
@@ -139,10 +154,34 @@
     enableZshIntegration = true;
   };
 
+  services.swayidle = {
+    enable = true;
+    events = [
+      { event = "before-sleep"; command = "${pkgs.swaylock}/bin/swaylock"; }
+      { event = "lock"; command = "lock"; }
+    ];
+    timeouts = [
+      { timeout = 60; command = "${pkgs.swaylock}/bin/swaylock -fF"; }
+    ];
+  };
+
   programs = {
 
     # Let Home Manager install and manage itself.
     home-manager.enable = true;
+
+    # Screen locker for Wayland
+    swaylock = {
+      enable = true;
+      settings = {
+        color = "808080";
+        font-size = 24;
+        indicator-idle-visible = false;
+        indicator-radius = 100;
+        line-color = "ffffff";
+        show-failed-attempts = true;
+      };
+    };
 
     # GPG
     gpg.enable = true;
