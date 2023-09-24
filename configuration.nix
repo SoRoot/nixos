@@ -71,9 +71,12 @@ let
   networking.hostName = "nixos-wdno"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  # iwd iNet wireless daemon
+  #networking.wireless.iwd.enable = true;
+  #networking.networkmanager.wifi.backend = "iwd";
   networking.networkmanager = { # Easiest to use and most distros use this by default.
   enable = true;
-    #wifi.powersave = false; # Powersave true can make ssh connections slow
+    wifi.powersave = false; # Powersave true can make ssh connections slow
   };
 
 
@@ -159,10 +162,14 @@ let
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
+  # pipewire optional
+  security.rtkit.enable = true;
+
   # Enable sound and video handling
   services.pipewire = {
     enable = true;
     alsa.enable = true;
+    alsa.support32Bit = true;
     pulse.enable = true;
   };
 
@@ -246,12 +253,10 @@ let
       glib # gsettings
       dracula-theme # gtk theme
       gnome3.adwaita-icon-theme  # default gnome cursors
-      swaylock
-      swayidle
       grim # screenshot functionality
       slurp # screenshot functionality
       wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
-      bemenu # wayland clone of dmenu
+      wofi # wayland clone rofi launcher
       mako # notification system developed by swaywm maintainer
       wdisplays # tool to configure displays
       interception-tools # remap esc to capslock
@@ -275,7 +280,6 @@ let
       zeromq
       gcc-arm-embedded
       appimage-run
-      dejavu_fonts
       htop
       neovim
       neofetch
@@ -284,7 +288,7 @@ let
       #segger-jlink
       xpdf
       #xclip
-      xsel
+      #xsel
       #wl-copy
       #wl-paste
       tree
@@ -297,10 +301,25 @@ let
       paymo-track
       prospect-mail
       # xfce panel plugins
-      xfce.xfce4-xkb-plugin
-      xfce.xfce4-weather-plugin
+      #xfce.xfce4-xkb-plugin
+      #xfce.xfce4-weather-plugin
+
+      #fonts
+      #dejavu_fonts
+      #hack-font
     ];
   };
+
+  fonts = {
+    packages = with pkgs; [
+      dejavu_fonts
+    ];
+    fontconfig.defaultFonts = {
+      serif = ["DejaVu Serif"];
+      sansSerif = ["DejaVu Sans Mono"];
+    };
+  };
+
 
   nixpkgs.config = {
     # Set allowUnfree globally

@@ -1,4 +1,4 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, lib, ... }: {
 
   # Lookup all home-manager options here:
   # https://rycee.gitlab.io/home-manager/options.html
@@ -63,7 +63,7 @@
       xfce.thunar-archive-plugin
       xfce.thunar-volman
       xfce.tumbler # thunar thumbnails
-      xfce.xfce4-volumed-pulse
+      #xfce.xfce4-volumed-pulse
       xfce.xfconf # thunar save settings
       (xfce.thunar.override {
         thunarPlugins = with pkgs; [
@@ -128,11 +128,6 @@
         target = "onedrive-personal/config";
         source = ./onedrive-personal/config;
       };
-
-      #sway_settings = {
-        #target = "sway/config";
-        #source = ./sway/config;
-      #};
     };
   };
 
@@ -140,10 +135,19 @@
   wayland.windowManager.sway = {
     enable = true;
     config = rec {
+      keybindings = lib.mkOptionDefault
+      {
+        "${modifier}+x" = "focus child";
+      };
+      # Win key as Modifier
       modifier = "Mod4";
+      menu = "exec ${pkgs.wofi}/bin/wofi --show run";
       # Use wezterm as default terminal
       terminal = "wezterm"; 
-      font = [ "Hack" "DejaVu Sans Mono" ];
+      fonts = {
+        names = [ "DejaVu Sans Mono" ];
+        size = 9.0;
+      };
     };
   }; 
 
@@ -155,7 +159,7 @@
   };
 
   services.swayidle = {
-    enable = true;
+    enable = false;
     events = [
       { event = "before-sleep"; command = "${pkgs.swaylock}/bin/swaylock"; }
       { event = "lock"; command = "lock"; }
@@ -170,9 +174,12 @@
     # Let Home Manager install and manage itself.
     home-manager.enable = true;
 
+    # menu bar for sway
+    #waybar.enable = true;
+
     # Screen locker for Wayland
     swaylock = {
-      enable = true;
+      enable = false;
       settings = {
         color = "808080";
         font-size = 24;
@@ -297,12 +304,15 @@
         #terminal.multiplexerTitleFormat = "%s";
         #terminal.tabTitleFormat = "%m: %s";
         #terminal.windowTitleFormat = "%n@%m: %s";
+
+        # Auto start tmux when ZSH is launched
+        tmux.autoStartLocal = true;
       };
       # Additions for .zshrc
-      initExtra =  ''
-        # Autostart of tmux on terminal launch
-        if [ "$TMUX" = "" ]; then tmux; fi
-      '';
+      #initExtra =  ''
+        ## Autostart of tmux on terminal launch
+        #if [ "$TMUX" = "" ]; then tmux; fi
+      #'';
     };
 
     #FZF

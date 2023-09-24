@@ -39,8 +39,8 @@ return {
 	--color_scheme = "Tommorrow Night Bright",
 	--color_scheme = "UltraDark",
 	--color_scheme = "Thayer Bright",
-	--font = wezterm.font({family='DejaVu Sans Mono', stretch="Normal", weight="Regular"}),
-	font = wezterm.font('Hack'),
+	font = wezterm.font({family='DejaVu Sans Mono', stretch="Normal", weight="Regular"}),
+	--font = wezterm.font('Hack'),
 	--font = wezterm.font('Monaco'),
 	font_size = 9.0,
 }
