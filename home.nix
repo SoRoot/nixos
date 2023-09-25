@@ -149,6 +149,12 @@
         size = 9.0;
       };
     };
+    extraConfig = ''
+      input 1267:12375:ELAN1300:00_04F3:3057_Touchpad {
+        tap enabled
+        natural_scroll enabled
+      }
+    '';
   }; 
 
   # GPG agent for future use with Yubikey
