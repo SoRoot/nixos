@@ -143,7 +143,7 @@
       modifier = "Mod4";
       menu = "exec ${pkgs.wofi}/bin/wofi --show run";
       # Use wezterm as default terminal
-      terminal = "wezterm"; 
+      terminal = "wezterm -e tmux"; 
       fonts = {
         names = [ "DejaVu Sans Mono" ];
         size = 9.0;
@@ -304,9 +304,6 @@
         #terminal.multiplexerTitleFormat = "%s";
         #terminal.tabTitleFormat = "%m: %s";
         #terminal.windowTitleFormat = "%n@%m: %s";
-
-        # Auto start tmux when ZSH is launched
-        tmux.autoStartLocal = true;
       };
       # Additions for .zshrc
       #initExtra =  ''
