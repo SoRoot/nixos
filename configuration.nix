@@ -85,29 +85,29 @@ let
   systemd.services.systemd-networkd-wait-online.enable = lib.mkForce false;
 
   # systemd paymo-track service
-  systemd.user.services."paymo-track" = {
-    description = "Paymo track";
-    wantedBy = [ "graphical-session.target" ];
-    partOf = [ "graphical-session.target" ];
-    serviceConfig = {
-      Restart = "on-failure";
-      RestartSec = 5;
-      ExecStart = "${pkgs.paymo-track}/bin/paymo-track";
+  #systemd.user.services."paymo-track" = {
+    #description = "Paymo track";
+    #wantedBy = [ "graphical-session.target" ];
+    #partOf = [ "graphical-session.target" ];
+    #serviceConfig = {
+      #Restart = "on-failure";
+      #RestartSec = 5;
+      #ExecStart = "${pkgs.paymo-track}/bin/paymo-track";
 
-    };
-  };
+    #};
+  #};
 
   # systemd Prospect-Mail service
-  systemd.user.services."prospect-mail" = {
-    description = "Prospect Mail";
-    wantedBy = [ "graphical-session.target" ];
-    partOf = [ "graphical-session.target" ];
-    serviceConfig = {
-      Restart = "on-failure";
-      RestartSec = 5;
-      ExecStart = "${pkgs.prospect-mail}/bin/prospect-mail";
-    };
-  };
+  #systemd.user.services."prospect-mail" = {
+    #description = "Prospect Mail";
+    #wantedBy = [ "graphical-session.target" ];
+    #partOf = [ "graphical-session.target" ];
+    #serviceConfig = {
+      #Restart = "on-failure";
+      #RestartSec = 5;
+      #ExecStart = "${pkgs.prospect-mail}/bin/prospect-mail";
+    #};
+  #};
 
   # systemd OneDrive service
   services.onedrive.enable = true;
@@ -153,7 +153,7 @@ let
   #};
 
   # Configure keymap in X11
-  #services.xserver.layout = "us,es,de";
+  services.xserver.layout = "us,es,de";
   #services.xserver.xkbOptions = "caps:escape"; # map caps to escape.
 
   #services.xserver.displayManager.gdm.enable = true;
@@ -201,11 +201,6 @@ let
             EV_KEY: [KEY_CAPSLOCK, KEY_ESC]
     '';
   };
-  # Enable sway window manger
-  #programs.sway = {
-    #enable = true;
-    #wrapperFeatures.gtk = true;
-  #};
 
   # Enable sound.
   sound.enable = true;
@@ -222,7 +217,11 @@ let
   home-manager.useUserPackages = true;
   home-manager.users.lukas = import ./home.nix;
 
+  # Enable zsh here and in home.nix is necesary
   programs.zsh.enable = true;
+
+  # Brightness for display
+  programs.light.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.lukas = {
@@ -230,6 +229,7 @@ let
     extraGroups = [
       "wheel" # Enable ‘sudo’ for the user.
       "networkmanager" # Permission to chenge network settings
+      "video"
     ];
     shell = pkgs.zsh;
   };
@@ -260,6 +260,7 @@ let
       mako # notification system developed by swaywm maintainer
       wdisplays # tool to configure displays
       interception-tools # remap esc to capslock
+      playerctl # lib for controlling media
 
 
       python311

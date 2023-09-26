@@ -149,6 +149,17 @@
       keybindings = lib.mkOptionDefault
       {
         "${modifier}+x" = "focus child";
+
+        # Function keys for brightness and media
+        "XF86MonBrightnessDown" = "exec light -U 10";
+        "XF86MonBrightnessUp" = "exec light -A 10";
+        "XF86AudioRaiseVolume" = "exec 'wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%+'";
+        "XF86AudioLowerVolume" = "exec 'wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%-'";
+        "XF86AudioMute" = "exec 'wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle'";
+        "XF86AudioPlay" = "exec playerctl play-pause";
+        "XF86AudioStop" = "exec playerctl stop";
+        "XF86AudioNext" = "exec playerctl next";
+        "XF86AudioPrev" = "exec playerctl previous";
       };
       # Win key as Modifier
       modifier = "Mod4";
@@ -165,6 +176,10 @@
       input 1267:12375:ELAN1300:00_04F3:3057_Touchpad {
         tap enabled
         natural_scroll enabled
+      }
+      input type:keyboard {
+        xkb_layout us,es,de
+        xkb_options grp:rctl_toogle
       }
     '';
   }; 
