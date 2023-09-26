@@ -129,6 +129,17 @@
         source = ./onedrive-personal/config;
       };
     };
+    mimeApps = {
+      enable = true;
+      defaultApplications = {
+        "application/pdf" = "zathura.desktop";
+        "text/html" = "vivaldi-stable.desktop";
+        "x-scheme-handler/http" = "vivaldi-stable.desktop";
+        "x-scheme-handler/https" = "vivaldi-stable.desktop";
+        "x-scheme-handler/about" = "vivaldi-stable.desktop";
+        "x-scheme-handler/unknown"= "vivaldi-stable.desktop";
+      };
+    };
   };
 
   # Enable Sway
@@ -141,12 +152,13 @@
       };
       # Win key as Modifier
       modifier = "Mod4";
-      menu = "exec ${pkgs.wofi}/bin/wofi --show run";
+      menu = "exec ${pkgs.wofi}/bin/wofi -i --show run";
       # Use wezterm as default terminal
       terminal = "wezterm -e tmux"; 
       fonts = {
-        names = [ "DejaVu Sans Mono" ];
-        size = 9.0;
+        names = [ "Liberation Sans Regular" "FontAwesome" ];
+        style = "Regular";
+        size = 8.0;
       };
     };
     extraConfig = ''
@@ -156,6 +168,14 @@
       }
     '';
   }; 
+
+  services.mako = {
+    enable = true;
+    backgroundColor = "#997A8DEF";
+    borderColor = "#161114FF";
+    borderSize = 2;
+    font = "Liberation Sans Regular 9.0";
+  };
 
   # GPG agent for future use with Yubikey
   services.gpg-agent = {

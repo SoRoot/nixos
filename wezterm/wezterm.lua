@@ -2,6 +2,7 @@ local wezterm = require 'wezterm';
 return {
 	--default_prog = {"C:/Windows/System32/WindowsPowerShell/v1.0/powershell.exe"},
 	--default_prog = {"C:/Users/lukas/AppData/Local/Microsoft/WindowsApps/ubuntu2004.exe"},
+	hide_tab_bar_if_only_one_tab = true;
 	--colors = {
             --background = "#012456",
             --foreground = "#EEEDF0",
@@ -39,8 +40,11 @@ return {
 	--color_scheme = "Tommorrow Night Bright",
 	--color_scheme = "UltraDark",
 	--color_scheme = "Thayer Bright",
-	font = wezterm.font({family='DejaVu Sans Mono', stretch="Normal", weight="Regular"}),
-	--font = wezterm.font('Hack'),
+	--font = wezterm.font({family='DejaVu Sans Mono', stretch="Normal", weight="Regular"}),
+	font = wezterm.font_with_fallback {
+		'Hack',
+		'Font Awesome',
+	},
 	--font = wezterm.font('Monaco'),
 	font_size = 9.0,
 }

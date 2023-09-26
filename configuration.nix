@@ -304,19 +304,29 @@ let
       #xfce.xfce4-xkb-plugin
       #xfce.xfce4-weather-plugin
 
-      #fonts
-      #dejavu_fonts
-      #hack-font
+      nix-output-monitor
     ];
   };
 
   fonts = {
     packages = with pkgs; [
+      liberation_ttf
       dejavu_fonts
+      hack-font
+      font-awesome
+      noto-fonts
+      noto-fonts-cjk
+      noto-fonts-emoji
+      fira-code
+      fira-code-symbols
+      mplus-outline-fonts.githubRelease
+      dina-font
+      proggyfonts
     ];
     fontconfig.defaultFonts = {
-      serif = ["DejaVu Serif"];
-      sansSerif = ["DejaVu Sans Mono"];
+      serif = ["Noto Serif Regular"];
+      sansSerif = ["Liberation Sans Regular"];
+      monospace = ["Hack"];
     };
   };
 
