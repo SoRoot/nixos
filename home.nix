@@ -151,8 +151,8 @@
         "${modifier}+x" = "focus child";
 
         # Function keys for brightness and media
-        "XF86MonBrightnessDown" = "exec light -U 10";
-        "XF86MonBrightnessUp" = "exec light -A 10";
+        "XF86MonBrightnessDown" = "exec light -U 5";
+        "XF86MonBrightnessUp" = "exec light -A 5";
         "XF86AudioRaiseVolume" = "exec 'wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%+'";
         "XF86AudioLowerVolume" = "exec 'wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%-'";
         "XF86AudioMute" = "exec 'wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle'";
@@ -163,6 +163,14 @@
       };
       # Win key as Modifier
       modifier = "Mod4";
+      defaultWorkspace = "workspace number 2";
+      colors.focused = {
+        background = "#191919";
+        border = "#6B3E73";
+        childBorder = "#523059";
+        indicator = "#000000";
+        text = "#FFFFFF";
+      };
       menu = "exec ${pkgs.wofi}/bin/wofi -i --show run";
       # Use wezterm as default terminal
       terminal = "wezterm -e tmux"; 
@@ -182,12 +190,18 @@
         xkb_options grp:rctl_toogle
       }
     '';
+    #bars = [
+      #{
+        #command = "${pkgs.waybar}/bin/waybar";
+      #}
+    #];
   }; 
 
   services.mako = {
     enable = true;
-    backgroundColor = "#997A8DEF";
-    borderColor = "#161114FF";
+    maxVisible = -1;
+    backgroundColor = "#9959A5EF";
+    borderColor = "#46294CFF";
     borderSize = 2;
     font = "Liberation Sans Regular 9.0";
   };
@@ -216,7 +230,7 @@
     home-manager.enable = true;
 
     # menu bar for sway
-    #waybar.enable = true;
+    waybar.enable = true;
 
     # Screen locker for Wayland
     swaylock = {
@@ -229,6 +243,59 @@
         line-color = "ffffff";
         show-failed-attempts = true;
       };
+    };
+
+    wofi = {
+      enable = true;
+      settings = {
+        width = 500;
+        height = 240;
+      };
+      style = ''
+        * {
+          font-family: "liberation", "Sans";
+          font-size: 12px;
+        }
+        window {
+          margin: 0px;
+          border: none;
+          opacity: 0.98;
+          background-color: #857688;
+        }
+        #input {
+          margin: 5px;
+          border: none;
+          border-radius: 0px;
+          background-color: #9D91A0;
+        }
+        #input:focus:active {
+          border: none;
+        }
+        #inner-box {
+          margin: 5px;
+          border: none;
+          background-color: #9D91A0;
+        }
+        #outer-box {
+          margin: 5px;
+          border: none;
+          background-color: #857688;
+        }
+        #scroll {
+          margin: 0px;
+          border: none;
+        }
+        #text {
+          margin:5px;
+          border: none;
+        }
+        #entry:selected {
+          background-color: #8B6D91;
+        }
+        #entry:selected #text {
+          font-weight: bold;
+        }
+      '';
     };
 
     # GPG
@@ -380,6 +447,9 @@
         color_light="white" #colour015
         color_dark="colour232" # black= colour232
         color_window_off_status_current_bg="colour254"
+        color_window_on_status_bg="colour90"
+        color_border_fg="colour18"
+        color_border_active_fg="colour163"
 
         # Use system clipboard
         set -s set-clipboard on
@@ -400,6 +470,11 @@
 
         # Wezterm User Vars
         set -g allow-passthrough on
+
+        # Set colors
+        set -g status-style "bg=$color_window_on_status_bg"
+        set -g pane-border-style "fg=$color_border_fg"
+        set -g pane-active-border-style "fg=$color_border_active_fg"
 
         # Config for neseted tmux
         bind '"' split-window -c "#{pane_current_path}"
