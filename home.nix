@@ -174,6 +174,16 @@
       menu = "exec ${pkgs.wofi}/bin/wofi -i --show run";
       # Use wezterm as default terminal
       terminal = "wezterm -e tmux"; 
+      bars = [
+        {
+          command = "waybar";
+        }
+      ];
+      input = {
+        "*" = {
+          xkb_layout = "us,es,de";
+        };
+      };
       fonts = {
         names = [ "Liberation Sans Regular" "FontAwesome" ];
         style = "Regular";
@@ -185,24 +195,19 @@
         tap enabled
         natural_scroll enabled
       }
-      input type:keyboard {
+      input 1:1:AT_Translated_Set_2_keyboard {
         xkb_layout us,es,de
-        xkb_options grp:rctl_toogle
+        xkb_options grp:win_space_toggle
       }
     '';
-    #bars = [
-      #{
-        #command = "${pkgs.waybar}/bin/waybar";
-      #}
-    #];
   }; 
 
   services.mako = {
     enable = true;
     maxVisible = -1;
     backgroundColor = "#9959A5EF";
-    borderColor = "#46294CFF";
-    borderSize = 2;
+    #borderColor = "#46294CFF";
+    borderSize = 0;
     font = "Liberation Sans Regular 9.0";
   };
 
@@ -311,11 +316,11 @@
 
       plugins = with pkgs.vimPlugins; [
         #tokyonight-nvim
-        #onedark-nvim
+        onedark-nvim
         #onehalf
         #solarized-nvim
         #nightfox-nvim
-        catppuccin-nvim
+        #catppuccin-nvim
         #sonokai
         vim-nix
         cmp-spell
