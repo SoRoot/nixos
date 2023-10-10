@@ -291,8 +291,6 @@ let
       xpdf
       #xclip
       #xsel
-      #wl-copy
-      #wl-paste
       tree
       file
       unzip
@@ -305,8 +303,6 @@ let
       # xfce panel plugins
       #xfce.xfce4-xkb-plugin
       #xfce.xfce4-weather-plugin
-
-      nix-output-monitor
     ];
   };
 

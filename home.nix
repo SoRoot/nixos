@@ -149,7 +149,8 @@
       keybindings = lib.mkOptionDefault
       {
         "${modifier}+x" = "focus child";
-
+        #"${modifier}+minus" = "scratchpad show, resize 1000x600";
+        "${modifier}+Shift+minus" = "floating enable, resize set width 1920 height 1056, move scratchpad";
         # Function keys for brightness and media
         "XF86MonBrightnessDown" = "exec light -U 5";
         "XF86MonBrightnessUp" = "exec light -A 5";
@@ -235,7 +236,67 @@
     home-manager.enable = true;
 
     # menu bar for sway
-    waybar.enable = true;
+    waybar = {
+      enable = true;
+      settings = {
+          mainBar = {
+            layer = "bottom";
+            position = "top";
+            height = 10;
+            spacing = 4;
+            modules-left = ["sway/workspaces" "sway/mode" "sway/scratchpad" "custom/media"];
+            modules-center = ["clock"];
+            modules-right = ["pulseaudio" "network" "cpu" "memory" "keyboard-state" "sway/language" "tray" "battery"];
+
+            "sway/workspaces" = {
+              disable-scroll = true;
+              all-outputs = true;
+            };
+          };
+        };
+      style = ''
+        * {
+          border: none;
+          border-radius: 0;
+          font-family: "FontAwesome", "Noto";
+          font-size: 10px;
+        }
+        window#waybar {
+          background: #201921;
+          color: #FFFFFF;
+        }
+        #workspaces button {
+          padding: 0px;
+          color: #FFFFFF;
+        }
+        button {
+            /* Use box-shadow instead of border so the text isn't offset */
+            box-shadow: inset 0 -3px transparent;
+            /* Avoid rounded borders under each button name */
+            border: none;
+            border-radius: 0;
+        }
+        button:hover {
+            background: inherit;
+            box-shadow: inset 0 -3px #ffffff;
+        }
+        #workspaces button {
+            padding: 0 5px;
+            background-color: transparent;
+            color: #ffffff;
+        }
+        #workspaces button:hover {
+            background: rgba(0, 0, 0, 0.2);
+        }
+        #workspaces button.focused {
+            background-color: #64727D;
+            box-shadow: inset 0 -3px #ffffff;
+        }
+        #workspaces button.urgent {
+            background-color: #eb4d4b;
+        }
+      '';
+    };
 
     # Screen locker for Wayland
     swaylock = {
@@ -258,14 +319,14 @@
       };
       style = ''
         * {
-          font-family: "liberation", "Sans";
+          font-family: "Liberation", "Sans";
           font-size: 12px;
         }
         window {
           margin: 0px;
           border: none;
-          opacity: 0.98;
-          background-color: #857688;
+          /* background-color: #857688; */
+          background-color: #201921;
         }
         #input {
           margin: 5px;
@@ -284,7 +345,8 @@
         #outer-box {
           margin: 5px;
           border: none;
-          background-color: #857688;
+          /* background-color: #857688; */
+          background-color: #201921;
         }
         #scroll {
           margin: 0px;
@@ -435,7 +497,7 @@
     zellij.enable = true;
     tealdeer.enable = true;
 
-    #TMUX
+    #TUX
     tmux = {
       enable = true;
       aggressiveResize = true;
@@ -458,6 +520,7 @@
 
         # Use system clipboard
         set -s set-clipboard on
+        set -s copy-command 'wl-copy'
         # External clipboard tools
         #set -s copy-command 'xsel -i'
 
@@ -480,6 +543,12 @@
         set -g status-style "bg=$color_window_on_status_bg"
         set -g pane-border-style "fg=$color_border_fg"
         set -g pane-active-border-style "fg=$color_border_active_fg"
+
+        # Change pane with hjkl
+        bind h select-pane -L
+        bind j select-pane -D
+        bind k select-pane -U
+        bind l select-pane -R
 
         # Config for neseted tmux
         bind '"' split-window -c "#{pane_current_path}"
