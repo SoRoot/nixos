@@ -3,6 +3,10 @@
 
   inputs = {
     # Add other inputs as needed
+
+    #stable
+    #nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.05";
+    #unstable
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     # Home-manager

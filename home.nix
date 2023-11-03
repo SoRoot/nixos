@@ -24,10 +24,6 @@
           onedrive-personal
           onedrive-work
         '';
-        ".Xresources".text = ''
-          # Xresources set to work with tmux clipboard
-          XTerm*disallowedWindowOps: 20,21,SetXprop
-        '';
         ".config/zathura/zathurarc".text = ''
           # zathura config gile
           set selection-clipboard clipboard
@@ -39,7 +35,7 @@
       gparted
       #audacity
       #gimp
-      #zellij
+      zellij
       vivaldi
       wezterm
       signal-desktop
@@ -47,7 +43,8 @@
       threema-desktop
       discord
       slack
-      libreoffice-qt
+      openvpn
+      #libreoffice-qt
       hunspell
       hunspellDicts.de_DE
       hunspellDicts.en_US-large
@@ -154,8 +151,8 @@
         # Function keys for brightness and media
         "XF86MonBrightnessDown" = "exec light -U 5";
         "XF86MonBrightnessUp" = "exec light -A 5";
-        "XF86AudioRaiseVolume" = "exec 'wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%+'";
-        "XF86AudioLowerVolume" = "exec 'wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%-'";
+        "XF86AudioRaiseVolume" = "exec 'wpctl set-volume @DEFAULT_AUDIO_SINK@ 3%+'";
+        "XF86AudioLowerVolume" = "exec 'wpctl set-volume @DEFAULT_AUDIO_SINK@ 3%-'";
         "XF86AudioMute" = "exec 'wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle'";
         "XF86AudioPlay" = "exec playerctl play-pause";
         "XF86AudioStop" = "exec playerctl stop";
@@ -174,7 +171,7 @@
       };
       menu = "exec ${pkgs.wofi}/bin/wofi -i --show run";
       # Use wezterm as default terminal
-      terminal = "wezterm -e tmux"; 
+      terminal = "wezterm -e zellij"; 
       bars = [
         {
           command = "waybar";
@@ -206,6 +203,7 @@
   services.mako = {
     enable = true;
     maxVisible = -1;
+    defaultTimeout = 5500;
     backgroundColor = "#9959A5EF";
     #borderColor = "#46294CFF";
     borderSize = 0;
@@ -246,7 +244,7 @@
             spacing = 4;
             modules-left = ["sway/workspaces" "sway/mode" "sway/scratchpad" "custom/media"];
             modules-center = ["clock"];
-            modules-right = ["pulseaudio" "network" "cpu" "memory" "keyboard-state" "sway/language" "tray" "battery"];
+            modules-right = ["pulseaudio" "network" "cpu" "memory" "keyboard-state" "sway/language" "battery" "tray"];
 
             "sway/workspaces" = {
               disable-scroll = true;
@@ -494,7 +492,12 @@
     };
 
     # Other
-    zellij.enable = true;
+    zellij = {
+      enable = true;
+    };
+
+
+    #tldr
     tealdeer.enable = true;
 
     #TUX
@@ -502,11 +505,11 @@
       enable = true;
       aggressiveResize = true;
       escapeTime = 20;
-      #mouse = true;
+      mouse = true;
       keyMode = "vi";
       historyLimit = 50000;
       baseIndex = 1;
-      terminal = "tmux-256color";
+      terminal = "xterm-256color";
       extraConfig = ''
         # Colors for nested tmux
         color_status_text="colour245"
@@ -519,8 +522,8 @@
         color_border_active_fg="colour163"
 
         # Use system clipboard
-        set -s set-clipboard on
-        set -s copy-command 'wl-copy'
+        #set -s set-clipboard on
+        set -s copy-command 'wl-clipboard'
         # External clipboard tools
         #set -s copy-command 'xsel -i'
 

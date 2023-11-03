@@ -114,6 +114,7 @@ let
 
   # Set your time zone.
   time.timeZone = "America/Mexico_City";
+  #time.timeZone = "America/Chicago";
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -182,9 +183,14 @@ let
   services.dbus.enable = true;
   xdg.portal = {
     enable = true;
+    extraPortals = with pkgs; [
+      # To make slack screen-sharing possible
+      xdg-desktop-portal-wlr
+      # gtk portal needed to make gtk apps happy
+      xdg-desktop-portal-gtk
+    ];
+    xdgOpenUsePortal = true;
     wlr.enable = true;
-    # gtk portal needed to make gtk apps happy
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
 
   # sway config to render sway
@@ -264,13 +270,14 @@ let
       playerctl # lib for controlling media
 
 
-      python311
+      #python311
       wget
       ripgrep
       #ripgrep-all
       #pandoc
       #poppler_utils
       #ffmpeg
+      iperf
       libftdi1
       usbutils
       gnumake
@@ -289,6 +296,7 @@ let
       ntfs3g
       #segger-jlink
       xpdf
+      feh
       #xclip
       #xsel
       tree
@@ -338,17 +346,6 @@ let
       "xpdf-4.04"
     ];
   };
-
-  # Should make screen sharing possiblie in slack
-  #xdg = {
-    #portal = {
-      #enable = true;
-      #extraPortals = with pkgs; [
-        #xdg-desktop-portal-wlr
-      #];
-      ##gtkUsePortal = true;
-    #};
-  #};
 
   # Virtualbox settings
   virtualisation.virtualbox.host.enable = true;
