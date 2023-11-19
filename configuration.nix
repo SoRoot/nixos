@@ -189,7 +189,7 @@ let
       # gtk portal needed to make gtk apps happy
       xdg-desktop-portal-gtk
     ];
-    xdgOpenUsePortal = true;
+    #xdgOpenUsePortal = true;
     wlr.enable = true;
   };
 
@@ -273,7 +273,7 @@ let
       #python311
       wget
       ripgrep
-      #ripgrep-all
+      ripgrep-all
       #pandoc
       #poppler_utils
       #ffmpeg
@@ -287,13 +287,13 @@ let
       gdb
       binutils
       zeromq
-      gcc-arm-embedded
       appimage-run
       htop
       neovim
       neofetch
       meld
       ntfs3g
+      #gcc-arm-embedded
       #segger-jlink
       xpdf
       feh
