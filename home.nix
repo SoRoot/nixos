@@ -126,6 +126,12 @@
         target = "onedrive-personal/config";
         source = ./onedrive-personal/config;
       };
+
+      zellij_settings = {
+        target = "zellij/config.kdl";
+        source = ./zellij/config.kdl;
+      };
+
     };
     mimeApps = {
       enable = true;
