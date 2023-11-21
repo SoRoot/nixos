@@ -397,7 +397,9 @@
         cmp-spell
         tagbar
         nerdcommenter
-        fzf-vim
+        fzf-lua
+        nvim-web-devicons
+        nvim-dap
         nvim-lspconfig
         nvim-cmp
         cmp-nvim-lsp
@@ -437,9 +439,8 @@
       enable = true;
       userName = "SoRoot";
       userEmail = "lukas.ungerland@gmail.com";
-      diff-so-fancy = {
+      delta = {
         enable = true;
-        rulerWidth = 60;
       };
       aliases = {
         co = "checkout";
@@ -513,7 +514,7 @@
 
     #TUX
     tmux = {
-      enable = true;
+      enable = false;
       aggressiveResize = true;
       escapeTime = 20;
       mouse = true;

@@ -274,6 +274,9 @@ let
       wget
       ripgrep
       ripgrep-all
+      fd
+      bat
+      chafa
       #pandoc
       #poppler_utils
       #ffmpeg
