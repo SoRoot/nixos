@@ -17,6 +17,17 @@ vim.api.nvim_set_keymap('n', '<leader>b', ':FzfLua buffers<CR>', {noremap=true, 
 vim.api.nvim_set_keymap('n', '<leader>q', ':FzfLua quickfix<CR>', {noremap=true, silent=true}) --show Quickfix
 vim.api.nvim_set_keymap('n', '<leader>G', ':FzfLua live_grep<CR>', {noremap=true, silent=true}) --show Live Grep
 
+--Git mappings
+vim.api.nvim_set_keymap('n', '<leader>gb', ':Gitsigns blame_line<CR>', {noremap=true, silent=true})
+vim.api.nvim_set_keymap('n', '<leader>gs', ':Gitsigns stage_hunk<CR>', {noremap=true, silent=true})
+vim.api.nvim_set_keymap('n', '<leader>gu', ':Gitsigns undo_stage_hunk<CR>', {noremap=true, silent=true})
+vim.api.nvim_set_keymap('n', '<leader>gr', ':Gitsigns reset_hunk<CR>', {noremap=true, silent=true})
+vim.api.nvim_set_keymap('n', '<leader>gR', ':Gitsigns reset_buffer<CR>', {noremap=true, silent=true})
+vim.api.nvim_set_keymap('n', '<leader>gp', ':Gitsigns preview_buffer<CR>', {noremap=true, silent=true})
+
+--Code (LSP)
+
+
 --spell mappings: change the last wrong wirtten word with ,+f undo with esc+u.
 vim.api.nvim_set_keymap('i', '<leader>r', '<c-g>u<Esc>[s1z=`]a<c-g>u', {noremap=true, silent=true}) --for insert mode
 vim.api.nvim_set_keymap('n', '<leader>r', '[s1z=<c-o>', {noremap=true, silent=true}) --and normal mode
