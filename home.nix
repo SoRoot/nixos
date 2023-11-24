@@ -202,7 +202,7 @@
         };
       };
       fonts = {
-        names = [ "Liberation Sans Regular" "FontAwesome" ];
+        names = [ "Liberation Sans Regular" "FontAwesome" "Nerd"];
         style = "Regular";
         size = 8.0;
       };
