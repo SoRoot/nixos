@@ -264,6 +264,7 @@ let
       wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
       wofi # wayland clone rofi launcher
       mako # notification system developed by swaywm maintainer
+      swaynotificationcenter
       waybar # status bar
       wdisplays # tool to configure displays
       interception-tools # remap esc to capslock
@@ -276,7 +277,7 @@ let
       ripgrep-all
       fd
       bat
-      chafa
+      viu
       #pandoc
       #poppler_utils
       #ffmpeg
@@ -319,6 +320,14 @@ let
 
   fonts = {
     packages = with pkgs; [
+      helvetica-neue-lt-std
+      garamond-libre
+      cabin
+      gelasio
+      carlito
+      rPackages.monaco
+      overpass
+      source-sans
       liberation_ttf
       dejavu_fonts
       hack-font
@@ -326,6 +335,7 @@ let
       noto-fonts
       noto-fonts-cjk
       noto-fonts-emoji
+      nerdfonts
       fira-code
       fira-code-symbols
       mplus-outline-fonts.githubRelease

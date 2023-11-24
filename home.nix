@@ -143,10 +143,6 @@
         "x-scheme-handler/about" = "vivaldi-stable.desktop";
         "x-scheme-handler/unknown"= "vivaldi-stable.desktop";
       };
-      associations.added = {
-        "x-scheme-handler/http" = "vivaldi-stable.desktop";
-        "x-scheme-handler/https" = "vivaldi-stable.desktop";
-      };
     };
   };
 
@@ -157,8 +153,10 @@
       keybindings = lib.mkOptionDefault
       {
         "${modifier}+x" = "focus child";
-        #"${modifier}+minus" = "scratchpad show, resize 1000x600";
-        "${modifier}+Shift+minus" = "floating enable, resize set width 1920 height 1056, move scratchpad";
+        "${modifier}+u" = "scratchpad show";
+        "${modifier}+minus" = "nop";
+        "${modifier}+Shift+u" = "floating enable, resize set width 1920 height 1056, move scratchpad";
+        "${modifier}+Shift+minus" = "nop";
         # Function keys for brightness and media
         "XF86MonBrightnessDown" = "exec light -U 5";
         "XF86MonBrightnessUp" = "exec light -A 5";
@@ -175,7 +173,7 @@
       defaultWorkspace = "workspace number 2";
       colors.focused = {
         background = "#191919";
-        border = "#6B3E73";
+        border = "#b701d7";
         childBorder = "#523059";
         indicator = "#000000";
         text = "#FFFFFF";
@@ -183,6 +181,16 @@
       menu = "exec ${pkgs.wofi}/bin/wofi -i --show run";
       # Use wezterm as default terminal
       terminal = "wezterm -e zellij"; 
+      startup = [
+        { command = "swaync"; always = true; }
+        { command = "wezterm --app-id=dropdown"; always = true; }
+      ];
+      window.commands = [
+        { command = "floating enable"; criteria.app_id = "dropdown"; }
+        { command = "resize set 98ppt 98ppt"; criteria.app_id = "dropdown"; }
+        { command = "move scratchpad"; criteria.app_id = "dropdown"; }
+        { command = "border pixel 10"; criteria.app_id = "dropdown"; }
+      ];
       bars = [
         {
           command = "waybar";
@@ -212,11 +220,11 @@
   }; 
 
   services.mako = {
-    enable = true;
+    enable = false;
     maxVisible = -1;
     defaultTimeout = 5500;
     backgroundColor = "#9959A5EF";
-    #borderColor = "#46294CFF";
+    borderColor = "#46294CFF";
     borderSize = 0;
     font = "Liberation Sans Regular 9.0";
   };
@@ -251,16 +259,38 @@
           mainBar = {
             layer = "bottom";
             position = "top";
-            height = 10;
+            height = 24;
             spacing = 4;
             modules-left = ["sway/workspaces" "sway/mode" "sway/scratchpad" "custom/media"];
             modules-center = ["clock"];
-            modules-right = ["pulseaudio" "network" "cpu" "memory" "keyboard-state" "sway/language" "battery" "tray"];
+            modules-right = ["pulseaudio" "network" "cpu" "memory" "keyboard-state" "sway/language" "battery" "tray" "custom/notification"];
 
             "sway/workspaces" = {
               disable-scroll = true;
               all-outputs = true;
             };
+
+           "custom/notification" = {
+              tooltip = false;
+              format = "{icon}";
+              format-icons = {
+                notification = "<span foreground='red'><sup></sup></span>";
+                none = "";
+                dnd-notification = "<span foreground='red'><sup></sup></span>";
+                dnd-none = "";
+                inhibited-notification = "<span foreground='red'><sup></sup></span>";
+                inhibited-none = "";
+                dnd-inhibited-notification = "<span foreground='red'><sup></sup></span>";
+                dnd-inhibited-none = "";
+              };
+              return-type = "json";
+              exec-if = "which swaync-client";
+              exec = "swaync-client -swb";
+              on-click = "swaync-client -t -sw";
+              on-click-right = "swaync-client -d -sw";
+              escape = true;
+            };
+
           };
         };
       style = ''
@@ -277,6 +307,9 @@
         #workspaces button {
           padding: 0px;
           color: #FFFFFF;
+        }
+        #custom-notification {
+          font-family: "NotoSansMono Nerd Font";
         }
         button {
             /* Use box-shadow instead of border so the text isn't offset */
@@ -393,6 +426,7 @@
         #nightfox-nvim
         #catppuccin-nvim
         #sonokai
+        dracula-nvim
         vim-nix
         cmp-spell
         tagbar
