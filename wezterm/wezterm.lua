@@ -27,7 +27,8 @@ return {
             --yellow = "#EEEDF0",
 	--}
 	--color_scheme = "Monokai Vivid",
-	color_scheme = "Mathias",
+	--color_scheme = "Mathias",
+	color_scheme = "Dracula",
 	--color_scheme = "VibranktInk",
 	--color_scheme = "Argonaut",
 	--color_scheme = "Adventure",
