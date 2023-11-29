@@ -157,6 +157,8 @@
         "${modifier}+minus" = "nop";
         "${modifier}+Shift+u" = "floating enable, resize set width 1920 height 1056, move scratchpad";
         "${modifier}+Shift+minus" = "nop";
+        "${modifier}+Shift+n" = "exec swaync-client -t -sw";
+
         # Function keys for brightness and media
         "XF86MonBrightnessDown" = "exec light -U 5";
         "XF86MonBrightnessUp" = "exec light -A 5";
@@ -202,7 +204,7 @@
         };
       };
       fonts = {
-        names = [ "Liberation Sans Regular" "FontAwesome" "Nerd"];
+        names = [ "Liberation Sans" "Font Awesome 6 Free" "Nerd Font"];
         style = "Regular";
         size = 8.0;
       };
@@ -263,14 +265,70 @@
             spacing = 4;
             modules-left = ["sway/workspaces" "sway/mode" "sway/scratchpad" "custom/media"];
             modules-center = ["clock"];
-            modules-right = ["pulseaudio" "network" "cpu" "memory" "keyboard-state" "sway/language" "battery" "tray" "custom/notification"];
+            modules-right = ["pulseaudio" "network" "cpu" "memory" "custom/notification" "tray" "keyboard-state" "sway/language" "battery"];
 
             "sway/workspaces" = {
               disable-scroll = true;
               all-outputs = true;
             };
 
-           "custom/notification" = {
+            "sway/mode" = {
+              format = "<span style=\"italic\">{}</span>";
+            };
+
+            clock = {
+              tooltip-format = "<big>{:%Y %B}</big>\n<tt>{calendar}</tt>";
+              format = "{:%d.%b  %H:%M}";
+            };
+            
+            cpu = {
+              format = "{usage}% ";
+            };
+
+            memory = {
+              format = "{}% ";
+            };
+
+            battery = {
+              states = {
+                good = 95;
+                warning = 30;
+                critical = 15;
+              };
+              format = "{capacity}% {icon}";
+              format-charging = "{capacity}% ";
+              format-plugged = "{capacity}% ";
+              format-alt = "{time} {icon}";
+              format-good = "{capacity}% {icon}";
+              format-full = "{capacity}% {icon}";
+              format-icons = [ " " " " " " " " " " ];
+            };
+
+            network = {
+              format-wifi = "{essid} ({signalStrength}%)  ";
+              format-ethernet = "{ipaddr}/{cidr} ";
+              tooltip-format = "{ifname} via {gwaddr} ";
+              format-linked = "{ifname} (No IP) ";
+              format-disconnected = "Disconnected ⚠";
+              format-alt = "{ifname}: {ipaddr}/{cidr}";
+            };
+
+            pulseaudio = {
+              scroll-step = 1; # %, can be a float
+              format = "{volume}% {icon} {format_source}";
+              format-bluetooth = "{volume}% {icon} {format_source}";
+              format-bluetooth-muted = "ﱝ {icon} {format_source}";
+              format-muted = "ﱝ {format_source}";
+              format-source = "{volume}% ";
+              format-source-muted = "";
+              format-icons = {
+                headphone = "";
+                default = [ "" "" "" ];
+              };
+              on-click = "pavucontrol";
+            };
+
+            "custom/notification" = {
               tooltip = false;
               format = "{icon}";
               format-icons = {
@@ -290,14 +348,14 @@
               on-click-right = "swaync-client -d -sw";
               escape = true;
             };
-
           };
-        };
+      };
+
       style = ''
         * {
           border: none;
           border-radius: 0;
-          font-family: "FontAwesome", "Noto";
+          font-family: "Nerd Font";
           font-size: 10px;
         }
         window#waybar {
@@ -308,8 +366,16 @@
           padding: 0px;
           color: #FFFFFF;
         }
-        #custom-notification {
-          font-family: "NotoSansMono Nerd Font";
+        #clock,
+        #battery,
+        #cpu,
+        #memory,
+        #network,
+        #tray,
+        #custom-notification,
+        #keyboard-state {
+          padding: 3px 3px;
+          margin: 3px 3px;
         }
         button {
             /* Use box-shadow instead of border so the text isn't offset */
@@ -442,6 +508,7 @@
         gitsigns-nvim
         vim-fugitive
         vim-autoformat
+        vim-markdown-toc
       ];
 
       vimAlias = true;

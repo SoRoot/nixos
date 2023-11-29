@@ -6,8 +6,6 @@ return {
 	--colors = {
             --background = "#012456",
             --foreground = "#EEEDF0",
-
-
             --black = "#000000",
             --blue = "#000080",
             --brightBlack = "#808080",
@@ -44,7 +42,9 @@ return {
 	--font = wezterm.font({family='DejaVu Sans Mono', stretch="Normal", weight="Regular"}),
 	font = wezterm.font_with_fallback {
 		'Hack',
-		'Font Awesome',
+		'Font Awesome 6 Free',
+		'Nerd Font',
+		'Noto Sans Mono',
 	},
 	--font = wezterm.font('Monaco'),
 	font_size = 9.0,

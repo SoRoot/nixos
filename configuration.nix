@@ -4,24 +4,24 @@
 
 { config, pkgs, lib, ... }:
 
-let
+#let
   # bash script to let dbus know about important env variables and
   # propagate them to relevent services run at the end of sway config
   # see
   # https://github.com/emersion/xdg-desktop-portal-wlr/wiki/"It-doesn't-work"-Troubleshooting-Checklist
   # note: this is pretty much the same as  /etc/sway/config.d/nixos.conf but also restarts
   # some user services to make sure they have the correct environment variables
-  dbus-sway-environment = pkgs.writeTextFile {
-    name = "dbus-sway-environment";
-    destination = "/bin/dbus-sway-environment";
-    executable = true;
+  #dbus-sway-environment = pkgs.writeTextFile {
+    #name = "dbus-sway-environment";
+    #destination = "/bin/dbus-sway-environment";
+    #executable = true;
 
-    text = ''
-      dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
-      systemctl --user stop pipewire pipewire-media-session xdg-desktop-portal xdg-desktop-portal-wlr
-      systemctl --user start pipewire pipewire-media-session xdg-desktop-portal xdg-desktop-portal-wlr
-    '';
-  };
+    #text = ''
+      #dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+      #systemctl --user stop pipewire pipewire-media-session xdg-desktop-portal xdg-desktop-portal-wlr
+      #systemctl --user start pipewire pipewire-media-session xdg-desktop-portal xdg-desktop-portal-wlr
+    #'';
+  #};
 
   # currently, there is some friction between sway and gtk:
   # https://github.com/swaywm/sway/wiki/GTK-3-settings-on-Wayland
@@ -29,23 +29,23 @@ let
   # for gsettings to work, we need to tell it where the schemas are
   # using the XDG_DATA_DIR environment variable
   # run at the end of sway config
-  configure-gtk = pkgs.writeTextFile {
-    name = "configure-gtk";
-    destination = "/bin/configure-gtk";
-    executable = true;
-    text = let
-      schema = pkgs.gsettings-desktop-schemas;
-      datadir = "${schema}/share/gsettings-schemas/${schema.name}";
-    in ''
-      export XDG_DATA_DIRS=${datadir}:$XDG_DATA_DIRS
-      gnome_schema=org.gnome.desktop.interface
-      gsettings set $gnome_schema gtk-theme 'Dracula'
-    '';
-  };
+  #configure-gtk = pkgs.writeTextFile {
+    #name = "configure-gtk";
+    #destination = "/bin/configure-gtk";
+    #executable = true;
+    #text = let
+      #schema = pkgs.gsettings-desktop-schemas;
+      #datadir = "${schema}/share/gsettings-schemas/${schema.name}";
+    #in ''
+      #export XDG_DATA_DIRS=${datadir}:$XDG_DATA_DIRS
+      #gnome_schema=org.gnome.desktop.interface
+      #gsettings set $gnome_schema gtk-theme 'Dracula'
+    #'';
+  #};
 
-  in
+  #in
   {
-    
+
     imports =
       [
       # Include the results of the hardware scan.
@@ -76,8 +76,8 @@ let
   #networking.networkmanager.wifi.backend = "iwd";
   networking.networkmanager = { # Easiest to use and most distros use this by default.
   enable = true;
-    wifi.powersave = false; # Powersave true can make ssh connections slow
-  };
+  wifi.powersave = false; # Powersave true can make ssh connections slow
+};
 
 
   # Workaround from error discussed https://github.com/NixOS/nixpkgs/issues/180175
@@ -180,8 +180,8 @@ let
   # (/org/freedesktop/portal/desktop).
   # The portal interfaces include APIs for file access, opening URIs,
   # printing and others.
-  services.dbus.enable = true;
-  xdg.portal = {
+  #services.dbus.enable = true;
+  xdg.portal.configPackages = {
     enable = true;
     extraPortals = with pkgs; [
       # To make slack screen-sharing possible
@@ -252,8 +252,8 @@ let
     # System-wide installed packages. See ./home.nix for user-specific programs
     systemPackages = with pkgs; [
       # Sway
-      dbus-sway-environment
-      configure-gtk
+      #dbus-sway-environment
+      #configure-gtk
       wayland
       xdg-utils # for opening default programs when clicking links
       glib # gsettings
