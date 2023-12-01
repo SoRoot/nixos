@@ -4,7 +4,7 @@
 
 { config, pkgs, lib, ... }:
 
-#let
+let
   # bash script to let dbus know about important env variables and
   # propagate them to relevent services run at the end of sway config
   # see
@@ -42,8 +42,18 @@
       #gsettings set $gnome_schema gtk-theme 'Dracula'
     #'';
   #};
+  slack = pkgs.slack.overrideAttrs (old: {
+    installPhase = old.installPhase + ''
+      rm $out/bin/slack
 
-  #in
+      makeWrapper $out/lib/slack/slack $out/bin/slack \
+        --prefix XDG_DATA_DIRS : $GSETTINGS_SCHEMAS_PATH \
+        --prefix PATH : ${lib.makeBinPath [pkgs.xdg-utils]} \
+        --add-flags "--ozone-platform=wayland --enable-features=UseOzonePlatform,WebRTCPipeWireCapturer"
+    '';
+  });
+
+  in
   {
 
     imports =
@@ -181,7 +191,7 @@
   # The portal interfaces include APIs for file access, opening URIs,
   # printing and others.
   #services.dbus.enable = true;
-  xdg.portal.configPackages = {
+  xdg.portal.config.common.default = {
     enable = true;
     extraPortals = with pkgs; [
       # To make slack screen-sharing possible
@@ -312,6 +322,8 @@
       bmap-tools
       paymo-track
       prospect-mail
+      slack
+      thunderbird-unwrapped
       # xfce panel plugins
       #xfce.xfce4-xkb-plugin
       #xfce.xfce4-weather-plugin

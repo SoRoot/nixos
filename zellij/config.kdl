@@ -229,7 +229,7 @@ plugins {
 themes {
     acapulco {
         fg 248 248 242
-        bg 40 42 54
+        bg "#44475a"
         red "#21d701"
         green "#b701d7"
         yellow 241 250 140

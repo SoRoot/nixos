@@ -42,7 +42,6 @@
       whatsapp-for-linux
       threema-desktop
       discord
-      slack
       openvpn
       #libreoffice-qt
       pinta
@@ -263,7 +262,7 @@
             position = "top";
             height = 24;
             spacing = 4;
-            modules-left = ["sway/workspaces" "sway/mode" "sway/scratchpad" "custom/media"];
+            modules-left = ["sway/workspaces" "sway/mode" "sway/scratchpad"];
             modules-center = ["clock"];
             modules-right = ["pulseaudio" "network" "cpu" "memory" "custom/notification" "tray" "keyboard-state" "sway/language" "battery"];
 
