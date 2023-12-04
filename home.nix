@@ -50,6 +50,7 @@
       hunspellDicts.en_US-large
       hunspellDicts.es_MX
       firefox
+      wttrbar
       gnome.pomodoro
       picocom
       spotify
@@ -263,8 +264,8 @@
             height = 24;
             spacing = 4;
             modules-left = ["sway/workspaces" "sway/mode" "sway/scratchpad"];
-            modules-center = ["clock"];
-            modules-right = ["pulseaudio" "network" "cpu" "memory" "custom/notification" "tray" "keyboard-state" "sway/language" "battery"];
+            modules-center = ["clock" "custom/weather"];
+            modules-right = ["pulseaudio" "network" "backlight" "cpu" "memory" "custom/notification" "tray" "keyboard-state" "sway/language" "battery"];
 
             "sway/workspaces" = {
               disable-scroll = true;
@@ -327,6 +328,20 @@
               on-click = "pavucontrol";
             };
 
+            backlight = {
+              device = "intel_backlight";
+              format = "{percent}% {icon}";
+              format-icons = ["" ""];
+            };
+
+            "custom/weather" = {
+                format = "{} °";
+                tooltip = true;
+                interval = 3600;
+                exec = "wttrbar";
+                return-type = "json";
+            };
+
             "custom/notification" = {
               tooltip = false;
               format = "{icon}";
@@ -366,15 +381,17 @@
           color: #FFFFFF;
         }
         #clock,
+        #backlight,
         #battery,
         #cpu,
         #memory,
         #network,
         #tray,
         #custom-notification,
+        #custom-weather,
         #keyboard-state {
-          padding: 3px 3px;
-          margin: 3px 3px;
+          padding: 0px 2px;
+          margin: 0px 1px;
         }
         button {
             /* Use box-shadow instead of border so the text isn't offset */

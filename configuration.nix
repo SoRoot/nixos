@@ -191,13 +191,13 @@ let
   # The portal interfaces include APIs for file access, opening URIs,
   # printing and others.
   #services.dbus.enable = true;
-  xdg.portal.config.common.default = {
+  xdg.portal  = {
     enable = true;
-    extraPortals = with pkgs; [
+    extraPortals = [
       # To make slack screen-sharing possible
-      xdg-desktop-portal-wlr
+      pkgs.xdg-desktop-portal-wlr
       # gtk portal needed to make gtk apps happy
-      xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal-gtk
     ];
     #xdgOpenUsePortal = true;
     wlr.enable = true;
@@ -282,6 +282,7 @@ let
 
 
       #python311
+      foot
       wget
       ripgrep
       ripgrep-all
