@@ -277,7 +277,7 @@
             };
 
             clock = {
-              tooltip-format = "<big>{:%Y %B}</big>\n<tt>{calendar}</tt>";
+              tooltip-format = "<tt>{calendar}</tt>";
               format = "{:%d.%b  %H:%M}";
             };
             
@@ -338,7 +338,7 @@
                 format = "{} °";
                 tooltip = true;
                 interval = 3600;
-                exec = "wttrbar";
+                exec = "wttrbar --location mexico+city --date-format '%d.%m.%Y'";
                 return-type = "json";
             };
 

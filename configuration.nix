@@ -308,7 +308,7 @@ let
       neofetch
       meld
       ntfs3g
-      #gcc-arm-embedded
+      gcc-arm-embedded
       #segger-jlink
       xpdf
       feh
@@ -324,6 +324,7 @@ let
       paymo-track
       prospect-mail
       slack
+      xdg-user-dirs
       thunderbird-unwrapped
       # xfce panel plugins
       #xfce.xfce4-xkb-plugin
