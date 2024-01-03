@@ -132,6 +132,16 @@
         source = ./zellij/config.kdl;
       };
 
+      swaync_settings = {
+        target = "swaync/config.json";
+        source = ./swaync/config.json;
+      };
+
+      swaync_style = {
+        target = "swaync/style.css";
+        source = ./swaync/style.css;
+      };
+
     };
     mimeApps = {
       enable = true;
