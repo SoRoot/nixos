@@ -232,11 +232,11 @@
   };
 
   # GPG agent for future use with Yubikey
-  services.gpg-agent = {
-    enable = true;
-    enableSshSupport = true;
-    enableZshIntegration = true;
-  };
+  #services.gpg-agent = {
+    #enable = true;
+    #enableSshSupport = true;
+    #enableZshIntegration = true;
+  #};
 
   services.swayidle = {
     enable = false;
@@ -337,7 +337,7 @@
             "custom/weather" = {
                 format = "{} °";
                 tooltip = true;
-                interval = 3600;
+                interval = 900;
                 exec = "wttrbar --location mexico+city --date-format '%d.%m.%Y'";
                 return-type = "json";
             };
