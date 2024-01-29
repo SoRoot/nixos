@@ -153,6 +153,14 @@ let
     };
   };
 
+  # Printer
+  services.printing.enable = true;
+  services.avahi = {
+    enable = true;
+    nssmdns = true;
+    openFirewall = true;
+  };
+
   # Enable the X11 windowing system.
   #services.xserver = {
     #enable = true;
@@ -243,6 +251,7 @@ let
   users.users.lukas = {
     isNormalUser = true;
     extraGroups = [
+      "docker" # provide access docker
       "wheel" # Enable ‘sudo’ for the user.
       "networkmanager" # Permission to chenge network settings
       "video"
@@ -283,6 +292,7 @@ let
 
       #python311
       foot
+      dos2unix
       wget
       ripgrep
       ripgrep-all
@@ -325,7 +335,7 @@ let
       prospect-mail
       slack
       xdg-user-dirs
-      thunderbird-unwrapped
+      thunderbird-bin
       # xfce panel plugins
       #xfce.xfce4-xkb-plugin
       #xfce.xfce4-weather-plugin
@@ -377,6 +387,9 @@ let
   # Virtualbox settings
   virtualisation.virtualbox.host.enable = true;
   users.extraGroups.vboxusers.members = [ "lukas" ];
+  
+  # Docker
+  virtualisation.docker.enable = true;
 
 
   # Some programs need SUID wrappers, can be configured further or are

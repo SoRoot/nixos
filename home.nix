@@ -35,6 +35,7 @@
       gparted
       #audacity
       #gimp
+      vlc
       zellij
       vivaldi
       wezterm
@@ -551,6 +552,7 @@
     # SSH config file for Regor Server Wdno
     ssh = {
       enable = true;
+      addKeysToAgent = "yes";
       matchBlocks = {
         "regor" = {
           hostname = "antares.code-ing.com";

@@ -171,6 +171,7 @@
 .time {
   font-size: 10px;
   font-weight: bold;
+	font-family: "Liberation Sans", "Font Awesome 6 Free"
   background: transparent;
   color: @text-color;
   text-shadow: none;
@@ -180,6 +181,7 @@
 .body {
   font-size: 9px;
   font-weight: normal;
+	font-family: "Liberation Sans", "Font Awesome 6 Free"
   background: transparent;
   color: @text-color;
   text-shadow: none;
@@ -211,10 +213,10 @@
 /* Title widget */
 .widget-title {
   margin: 8px;
-  font-size: 1.5rem;
+  font-size: 9px;
 }
 .widget-title > button {
-  font-size: initial;
+  font-size: 9px;
   color: @text-color;
   text-shadow: none;
   background: @noti-bg;
@@ -229,10 +231,10 @@
 /* DND widget */
 .widget-dnd {
   margin: 8px;
-  font-size: 1.1rem;
+  font-size: 9px;
 }
 .widget-dnd > switch {
-  font-size: initial;
+  font-size: 9px;
   border-radius: 12px;
   background: @noti-bg;
   border: 1px solid @noti-border-color;
@@ -251,7 +253,7 @@
   margin: 8px;
 }
 .widget-label > label {
-  font-size: 1.1rem;
+  font-size: 9px;
 }
 
 /* Mpris widget */
@@ -264,10 +266,10 @@
 }
 .widget-mpris-title {
   font-weight: bold;
-  font-size: 1.25rem;
+  font-size: 10px;
 }
 .widget-mpris-subtitle {
-  font-size: 1.1rem;
+  font-size: 9px;
 }
 
 /* Buttons widget */
@@ -346,10 +348,10 @@
 /* Title widget */
 .widget-inhibitors {
   margin: 8px;
-  font-size: 1.5rem;
+  font-size: 10px;
 }
 .widget-inhibitors > button {
-  font-size: initial;
+  font-size: 9px;
   color: @text-color;
   text-shadow: none;
   background: @noti-bg;
