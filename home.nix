@@ -558,7 +558,7 @@
           hostname = "antares.code-ing.com";
           user = "lungerland";
           port = 40;
-          identityFile = "~/.ssh/regor.ed25519";
+          identityFile = "/home/lukas/.ssh/regor.ed25519";
         };
       };
     };

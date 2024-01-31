@@ -302,6 +302,7 @@ let
       #pandoc
       #poppler_utils
       #ffmpeg
+      inetutils
       iperf
       libftdi1
       usbutils
