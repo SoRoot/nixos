@@ -596,7 +596,7 @@
     zsh = {
       enable = true;
       historySubstringSearch.enable = true;
-      enableAutosuggestions = true;
+      autosuggestion.enable = true;
       syntaxHighlighting.enable = true;
       autocd = true;
 

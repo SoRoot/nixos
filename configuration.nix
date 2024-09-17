@@ -42,16 +42,6 @@ let
       #gsettings set $gnome_schema gtk-theme 'Dracula'
     #'';
   #};
-  slack = pkgs.slack.overrideAttrs (old: {
-    installPhase = old.installPhase + ''
-      rm $out/bin/slack
-
-      makeWrapper $out/lib/slack/slack $out/bin/slack \
-        --prefix XDG_DATA_DIRS : $GSETTINGS_SCHEMAS_PATH \
-        --prefix PATH : ${lib.makeBinPath [pkgs.xdg-utils]} \
-        --add-flags "--ozone-platform=wayland --enable-features=UseOzonePlatform,WebRTCPipeWireCapturer"
-    '';
-  });
 
   in
   {
@@ -94,31 +84,6 @@ let
   systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
   systemd.services.systemd-networkd-wait-online.enable = lib.mkForce false;
 
-  # systemd paymo-track service
-  #systemd.user.services."paymo-track" = {
-    #description = "Paymo track";
-    #wantedBy = [ "graphical-session.target" ];
-    #partOf = [ "graphical-session.target" ];
-    #serviceConfig = {
-      #Restart = "on-failure";
-      #RestartSec = 5;
-      #ExecStart = "${pkgs.paymo-track}/bin/paymo-track";
-
-    #};
-  #};
-
-  # systemd Prospect-Mail service
-  #systemd.user.services."prospect-mail" = {
-    #description = "Prospect Mail";
-    #wantedBy = [ "graphical-session.target" ];
-    #partOf = [ "graphical-session.target" ];
-    #serviceConfig = {
-      #Restart = "on-failure";
-      #RestartSec = 5;
-      #ExecStart = "${pkgs.prospect-mail}/bin/prospect-mail";
-    #};
-  #};
-
   # systemd OneDrive service
   services.onedrive.enable = true;
 
@@ -157,7 +122,7 @@ let
   services.printing.enable = true;
   services.avahi = {
     enable = true;
-    nssmdns = true;
+    nssmdns4 = true;
     openFirewall = true;
   };
 
@@ -172,7 +137,7 @@ let
   #};
 
   # Configure keymap in X11
-  services.xserver.layout = "us,es,de";
+  services.xserver.xkb.layout = "us,es,de";
   #services.xserver.xkbOptions = "caps:escape"; # map caps to escape.
 
   #services.xserver.displayManager.gdm.enable = true;
@@ -212,7 +177,7 @@ let
   };
 
   # sway config to render sway
-  hardware.opengl.enable = true;
+  hardware.graphics.enable = true;
 
   # Map CapsLock to Esc on single press and Ctrl on when used with multiple keys.
   services.interception-tools = {
@@ -235,7 +200,7 @@ let
   services.blueman.enable = true;
 
   # Enable touchpad support (enabled default in most desktopManager).
-  services.xserver.libinput.enable = true;
+  services.libinput.enable = true;
 
   # Enable home-manager
   home-manager.useUserPackages = true;
@@ -277,7 +242,7 @@ let
       xdg-utils # for opening default programs when clicking links
       glib # gsettings
       dracula-theme # gtk theme
-      gnome3.adwaita-icon-theme  # default gnome cursors
+      adwaita-icon-theme  # default gnome cursors
       grim # screenshot functionality
       slurp # screenshot functionality
       wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
@@ -332,9 +297,6 @@ let
       unrar
       p7zip
       bmap-tools
-      paymo-track
-      prospect-mail
-      slack
       xdg-user-dirs
       thunderbird-bin
       # xfce panel plugins
@@ -381,7 +343,7 @@ let
     # accept Linceses for segger-jlink
     segger-jlink.acceptLicense = true;
     permittedInsecurePackages = [
-      "xpdf-4.04"
+      "xpdf-4.05"
     ];
   };
 
