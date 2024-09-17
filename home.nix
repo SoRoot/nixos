@@ -52,7 +52,7 @@
       hunspellDicts.es_MX
       firefox
       wttrbar
-      gnome.pomodoro
+      gnome-pomodoro
       picocom
       spotify
       zathura
@@ -72,7 +72,7 @@
         ];
       })
       # to work with thunar-archive-plugin
-      gnome.file-roller
+      file-roller
       # device tree compiler
       dtc
       # LSPconfig

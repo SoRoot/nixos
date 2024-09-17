@@ -49,12 +49,12 @@
         };
 
       # NixOS hosts. Apply with:
-      # nixos-rebuild switch --flake '.#nixos-wdno'                   # Inside this repository, or
-      # nixos-rebuild switch --flake '/path/to/this/repo#nixos-wdno'  # From anywhere else
+      # nixos-rebuild switch --flake '.#nixos-mb'                   # Inside this repository, or
+      # nixos-rebuild switch --flake '/path/to/this/repo#nixos-mb'  # From anywhere else
       nixosConfigurations = {
 
         # Currently only one host. Add others here when needed.
-        nixos-wdno = nixpkgs.lib.nixosSystem {
+        nixos-mb = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
             ./configuration.nix
