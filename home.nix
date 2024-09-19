@@ -81,6 +81,8 @@
       nodePackages_latest.vscode-langservers-extracted
       nodePackages_latest.bash-language-server
       nil
+      # To use for keyboard backlight in sway
+      brightnessctl
     ];
     shellAliases = {
       v = "nvim";
@@ -166,13 +168,15 @@
         "${modifier}+x" = "focus child";
         "${modifier}+u" = "scratchpad show";
         "${modifier}+minus" = "nop";
-        "${modifier}+Shift+u" = "floating enable, resize set width 1920 height 1056, move scratchpad";
+        "${modifier}+Shift+u" = "floating enable, resize set width 1330 height 777, move scratchpad";
         "${modifier}+Shift+minus" = "nop";
         "${modifier}+Shift+n" = "exec swaync-client -t -sw";
 
         # Function keys for brightness and media
         "XF86MonBrightnessDown" = "exec light -U 5";
         "XF86MonBrightnessUp" = "exec light -A 5";
+        "XF86KbdBrightnessDown" = "exec 'brightnessctl --device='smc::kbd_backlight' set 10-'";
+        "XF86KbdBrightnessUp" = "exec 'brightnessctl --device='smc::kbd_backlight' set +10'";
         "XF86AudioRaiseVolume" = "exec 'wpctl set-volume @DEFAULT_AUDIO_SINK@ 3%+'";
         "XF86AudioLowerVolume" = "exec 'wpctl set-volume @DEFAULT_AUDIO_SINK@ 3%-'";
         "XF86AudioMute" = "exec 'wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle'";
@@ -192,11 +196,11 @@
         text = "#FFFFFF";
       };
       menu = "exec ${pkgs.wofi}/bin/wofi -i --show run";
-      # Use wezterm as default terminal
-      terminal = "wezterm -e zellij"; 
+      # Use foot as default terminal
+      terminal = "foot -e zellij"; 
       startup = [
         { command = "swaync"; always = true; }
-        { command = "wezterm --app-id=dropdown"; always = true; }
+        #{ command = "foot --app-id=dropdown"; always = true; }
       ];
       window.commands = [
         { command = "floating enable"; criteria.app_id = "dropdown"; }
@@ -220,12 +224,13 @@
         size = 8.0;
       };
     };
+    # To get information about your hardware devices like keyboard, touchpad use 'swaymsg -t get_inputs'
     extraConfig = ''
-      input 1267:12375:ELAN1300:00_04F3:3057_Touchpad {
+      input 1452:567:bcm5974 {
         tap enabled
         natural_scroll enabled
       }
-      input 1:1:AT_Translated_Set_2_keyboard {
+      input 1452:567:Apple_Inc._Apple_Internal_Keyboard_/_Trackpad {
         xkb_layout us,es,de
         xkb_options grp:win_space_toggle
       }
