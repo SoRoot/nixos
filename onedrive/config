@@ -8,7 +8,7 @@
 sync_dir = "~/OneDrive"
 skip_file = "~*|.~*|*.tmp|*~|*.temp|*.tmp*|4913|Personal Vault"
 monitor_interval = "600"
-skip_dir = "Escritorio|Imágenes|Microsoft Teams Chat Files|Música|Documentos/Adobe|Documentos/Anno 1800|Dcoumentos/Custom Office Templates|Documentos/My Games|Documentos/Outlook Files|Documentos/Overwatch|Documentos/Sound Recordings|Documentos/Trackmania|Documentos/WindowsPowerShell|Documentos/WinMerge|Documentos/Zoom"
+skip_dir = "Escritorio|Imágenes|Microsoft Teams Chat Files|Música|Documentos/Adobe|Documentos/Anno 1800|Dcoumentos/Custom Office Templates|Documentos/DayZ|Documentos/diot 2023|Documentos/Escritorio|Documentos/My Games|Documentos/Outlook Files|Documentos/Overwatch|Documentos/Rockstar Games|Documentos/Sound Recordings|Documentos/StarCraft|Documentos/Trackmania|Documentos/Visual Studio 2022|Documentos/WindowsPowerShell|Documentos/WinMerge|Documentos/Zoom"
 # log_dir = "/var/log/onedrive/"
 # drive_id = ""
 # upload_only = "false"
