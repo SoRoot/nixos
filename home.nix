@@ -21,8 +21,7 @@
     file = {
         ".config/onedrive-launcher".text = ''
           # Onedrive systemd service launcher for work/personal.
-          onedrive-personal
-          onedrive-work
+          onedrive
         '';
         ".config/zathura/zathurarc".text = ''
           # zathura config gile
@@ -120,14 +119,9 @@
         source = ./wezterm/wezterm.lua;
       };
 
-      onedrive_work_settings = {
-        target = "onedrive-work/config";
-        source = ./onedrive-work/config;
-      };
-
-      onedrive_personal_settings = {
-        target = "onedrive-personal/config";
-        source = ./onedrive-personal/config;
+      onedrive_settings = {
+        target = "onedrive/config";
+        source = ./onedrive/config;
       };
 
       zellij_settings = {
