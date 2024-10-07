@@ -39,6 +39,7 @@
       vivaldi
       wezterm
       signal-desktop
+      threema-desktop
       whatsapp-for-linux
       threema-desktop
       discord
@@ -49,6 +50,7 @@
       hunspellDicts.de_DE
       hunspellDicts.en_US-large
       hunspellDicts.es_MX
+      electrum
       firefox
       wttrbar
       gnome-pomodoro
