@@ -286,6 +286,7 @@ let
       ntfs3g
       gcc-arm-embedded
       #segger-jlink
+      afpfs-ng
       xpdf
       feh
       #xclip
