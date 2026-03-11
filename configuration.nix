@@ -286,8 +286,11 @@ let
       ntfs3g
       gcc-arm-embedded
       #segger-jlink
-      afpfs-ng
-      xpdf
+      #afpfs-ng
+      apfs-fuse
+      fuse
+      pkg-config
+      zathura
       feh
       #xclip
       #xsel
@@ -321,9 +324,9 @@ let
       hack-font
       font-awesome
       noto-fonts
-      noto-fonts-cjk
+      noto-fonts-cjk-sans
       noto-fonts-emoji
-      nerdfonts
+      nerd-fonts._3270
       fira-code
       fira-code-symbols
       mplus-outline-fonts.githubRelease
@@ -343,8 +346,9 @@ let
     allowUnfree = true;
     # accept Linceses for segger-jlink
     segger-jlink.acceptLicense = true;
-    permittedInsecurePackages = [
+     permittedInsecurePackages = [
       "xpdf-4.05"
+      "broadcom-sta-6.30.223.271-59-6.12.63"
     ];
   };
 

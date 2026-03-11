@@ -15,7 +15,7 @@
     # You can update Home Manager without changing this value. See
     # the Home Manager release notes for a list of state version
     # changes in each release.
-    stateVersion = "22.11";
+    stateVersion = "22.05";
 
     # Set configuration dotfiles
     file = {
@@ -39,9 +39,7 @@
       vivaldi
       wezterm
       signal-desktop
-      threema-desktop
-      whatsapp-for-linux
-      threema-desktop
+      telegram-desktop
       discord
       openvpn
       #libreoffice-qt
@@ -50,7 +48,7 @@
       hunspellDicts.de_DE
       hunspellDicts.en_US-large
       hunspellDicts.es_MX
-      electrum
+      #electrum
       firefox
       wttrbar
       gnome-pomodoro
@@ -184,6 +182,7 @@
       # Win key as Modifier
       modifier = "Mod4";
       defaultWorkspace = "workspace number 2";
+      workspaceLayout = "tabbed";
       colors.focused = {
         background = "#191919";
         border = "#b701d7";

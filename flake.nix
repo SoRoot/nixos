@@ -5,12 +5,14 @@
     # Add other inputs as needed
 
     #stable
-    #nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
+    #small-stable
+    #nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05-small";
     #unstable
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    #nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     # Home-manager
-    home-manager.url = "github:nix-community/home-manager";
+    home-manager.url = "github:nix-community/home-manager/release-25.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
