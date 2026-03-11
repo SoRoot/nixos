@@ -53,7 +53,6 @@
       wttrbar
       gnome-pomodoro
       picocom
-      spotify
       zathura
       qalculate-qt
       nxpmicro-mfgtools

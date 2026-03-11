@@ -110,6 +110,11 @@ let
     # Enables storage optimization via hardlinking store files
     settings.auto-optimise-store = true;
 
+    # Access token to give me 5000 request per hour
+    extraOptions = ''
+      !include ${config.age.secrets.github-token.path}
+    '';
+
     # Garbage Collector - Clean up old generations after 30 days
     gc = {
       automatic = true;
@@ -203,8 +208,11 @@ let
   services.libinput.enable = true;
 
   # Enable home-manager
-  home-manager.useUserPackages = true;
-  home-manager.users.lukas = import ./home.nix;
+  home-manager = {
+    useUserPackages = true;
+    backupFileExtension = "backup";
+    users.lukas = import ./home.nix;
+  };
 
   # Enable zsh here and in home.nix is necesary
   programs.zsh.enable = true;
@@ -221,6 +229,7 @@ let
       "networkmanager" # Permission to chenge network settings
       "video"
     ];
+    hashedPasswordFile = config.age.secrets.github-token.path;
     shell = pkgs.zsh;
   };
 
@@ -359,6 +368,12 @@ let
   # Docker
   virtualisation.docker.enable = true;
 
+  # age-encrypted secrets for NixOS and Home manager
+  age.identityPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+  age.secrets.github-token = {
+    file = ./secrets/github-token.age;
+    mode = "0444"; # Allow all users (including nix-daemon) to read it
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
